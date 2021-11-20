@@ -102,6 +102,4 @@ public class StandardScene extends AbstractScene {
         return scene;
     }
     //endregion
-
-
 }

@@ -18,11 +18,7 @@ import java.io.File;
 
 public class Main extends Application {
 
-    /**
-     * Variables for the application
-     */
-    private ResizableCanvas applicationCanvas;
-    private int[] applicationTargetSize;
+
 
     /**
      * This the setup method for the application
@@ -31,17 +27,7 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
-        //Setting up size of screen variable
-        Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-        applicationTargetSize = new int[]{size.width, size.height};
-
-
         GameController controller = new GameController(stage);
         controller.startupRoutine();
-
     }
-
-
-
-
 }

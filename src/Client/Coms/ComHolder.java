@@ -17,9 +17,9 @@ public class ComHolder {
     private final Socket socket;
 
     public ComHolder(GameController controller) throws IOException {
-        this.socket = new Socket(SERVER_IP_ADDRESS, SERVER_PORT);
-        this.receiving = new ComReceiving(controller, new DataInputStream(socket.getInputStream()));
-        this.sending = new ComSending(new DataOutputStream(socket.getOutputStream()));
+        socket = new Socket(SERVER_IP_ADDRESS, SERVER_PORT);
+        receiving = new ComReceiving(controller, new DataInputStream(socket.getInputStream()));
+        sending = new ComSending(new DataOutputStream(socket.getOutputStream()));
     }
 
     //TODO Make writing methods... still not knowing how because other classes.
