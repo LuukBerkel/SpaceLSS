@@ -1,4 +1,4 @@
-package Client.Scene.Standart;
+package Client.Scene.JavaFX;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -25,11 +25,13 @@ public abstract class AbstractScene {
     //region External
     public void switchToCanvas(){
         this.stage.setScene(canvasScene);
+        this.stage.setFullScreen(true);
         this.stage.show();
     }
 
     public void switchToVideo(){
         this.stage.setScene(videoScene);
+        this.stage.setFullScreen(true);
         this.stage.show();
     }
 

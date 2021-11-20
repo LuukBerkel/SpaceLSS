@@ -1,5 +1,6 @@
 package Client;
 
+import Client.Logic.GameController;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -9,7 +10,11 @@ import javafx.stage.Stage;
 import org.jfree.fx.FXGraphics2D;
 import org.jfree.fx.ResizableCanvas;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.awt.*;
+import java.io.File;
 
 public class Main extends Application {
 
@@ -31,26 +36,12 @@ public class Main extends Application {
         applicationTargetSize = new int[]{size.width, size.height};
 
 
-
-
-    }
-
-    /**
-     * Draw the UI and components
-     * @param g2d this is the graphics
-     * component used for drawing
-     */
-    private void draw(FXGraphics2D g2d) {
+        GameController controller = new GameController(stage);
+        controller.startupRoutine();
 
     }
 
-    /**
-     * Updates the UI and components
-     * @param v this is the frame-time
-     */
-    private void update(double v) {
 
-    }
 
 
 }
