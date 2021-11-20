@@ -30,34 +30,9 @@ public class Main extends Application {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         applicationTargetSize = new int[]{size.width, size.height};
 
-        //Setting up canvas variable
-        BorderPane mainPane = new BorderPane();
-        applicationCanvas = new ResizableCanvas(g -> draw(g), mainPane);
-        StackPane stackPane = new StackPane();
-        stackPane.getChildren().add(applicationCanvas);
-        mainPane.setCenter(stackPane);
 
-        //Setting up update variables
-        FXGraphics2D g2d = new FXGraphics2D(applicationCanvas.getGraphicsContext2D());
-        new AnimationTimer() {
-            long last = -1;
 
-            @Override
-            public void handle(long now) {
-                if (last == -1) {
-                    last = now;
-                }
-                update((now - last) / 1000000000.0);
-                last = now;
-                draw(g2d);
-            }
-        }.start();
 
-        //Showing screen
-        stage.setScene(new Scene(mainPane));
-        stage.setTitle("Space D&D");
-        stage.setFullScreen(true);
-        stage.show();
     }
 
     /**
