@@ -1,6 +1,10 @@
 package Client.Logic;
 
-import Client.Scene.JavaFX.StandardScene;
+import Client.Scene.Canvas.Customized.MainMenuUnit;
+import Client.Scene.Canvas.Customized.SpashScreenUnit;
+import Client.Scene.JavaFX.CustomMainMenuScene;
+import Client.Scene.JavaFX.StandardCanvasScene;
+import Client.Scene.JavaFX.StandardVideoScene;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -8,18 +12,20 @@ import java.awt.*;
 public class GameController {
 
     private Stage stage;
-    private int[] targetSize;
+    private double[] targetSize;
 
     public GameController(Stage stage) {
         this.stage = stage;
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
-        targetSize = new int[]{size.width, size.height};
+        targetSize = new double[]{size.width / 1920.0, size.height /1080.0 };
 
     }
 
     public void startupRoutine() {
-        StandardScene scene = new StandardScene(stage, "video.mp4", null);
-        scene.switchToVideo();
+        CustomMainMenuScene customMainMenuScene = new CustomMainMenuScene(stage, "backgroundvid.mp4", new MainMenuUnit());
+        StandardCanvasScene standardCanvasScene = new StandardCanvasScene(stage, new SpashScreenUnit(targetSize, customMainMenuScene));
+
+        standardCanvasScene.switchToScene();
     }
 
     //public void

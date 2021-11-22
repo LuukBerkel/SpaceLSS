@@ -7,8 +7,7 @@ public abstract class AbstractScene {
 
     //region Variables
     private final Stage stage;
-    private Scene videoScene;
-    private Scene canvasScene;
+    private Scene scene;
     //endregion
 
     //region Setup
@@ -16,26 +15,18 @@ public abstract class AbstractScene {
         this.stage = stage;
     }
 
-    public void giveOwnerScenes(Scene videoScene, Scene canvasScene){
-        this.videoScene = videoScene;
-        this.canvasScene  = canvasScene;
+    public void giveOwnerScenes(Scene scene){
+        this.scene = scene;
     }
     //endregion
 
     //region External
-    public void switchToCanvas(){
-        this.stage.setScene(canvasScene);
+    public void switchToScene(){
+        this.stage.setScene(scene);
         this.stage.setFullScreen(true);
         this.stage.show();
     }
 
-    public void switchToVideo(){
-        this.stage.setScene(videoScene);
-        this.stage.setFullScreen(true);
-        this.stage.show();
-    }
-
-    public abstract Scene setupCanvasScene();
-    public abstract Scene setupVideoScene();
+    public abstract Scene setupsScene();
     //endregion
 }

@@ -1,7 +1,10 @@
 package Client.Scene.Canvas.Standardized;
 
-import Client.Scene.Canvas.CanvasDrawer;
+import Client.Scene.Canvas.Util.CanvasDrawer;
 import org.jfree.fx.FXGraphics2D;
+
+import java.awt.*;
+import java.util.List;
 
 public class DualChoiceUnit implements CanvasDrawer {
     @Override
@@ -12,5 +15,10 @@ public class DualChoiceUnit implements CanvasDrawer {
     @Override
     public void update(double time) {
 
+    }
+
+    @Override
+    public List<Shape> getClickableSurfaces() {
+        return null;
     }
 }
