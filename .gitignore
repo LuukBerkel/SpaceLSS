@@ -22,8 +22,10 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-resources/backgroundvid.mp4
+resources/media/backgroundvid.mp4
 
 out/production/SpaceLSS/backgroundvid.mov
 
 out/production/SpaceLSS/backgroundvid.mp4
+
+out/production/SpaceLSS/media/backgroundvid.mp4

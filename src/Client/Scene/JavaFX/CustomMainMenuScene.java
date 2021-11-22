@@ -4,7 +4,6 @@ import Client.Scene.Canvas.Util.CanvasDrawer;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -13,9 +12,11 @@ import javafx.stage.Stage;
 import org.jfree.fx.FXGraphics2D;
 import org.jfree.fx.ResizableCanvas;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Point2D;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -63,10 +64,31 @@ public class CustomMainMenuScene extends AbstractScene {
 
         return scene;
     }
+
+
     //endregion
 
     //region Canvas
+    private Clip clip;
+
+    @Override
+    public void callBack() {
+        clip.start();
+        clip.loop(Integer.MAX_VALUE);
+    }
+
     private ResizableCanvas InitCanvas(){
+        try {
+            File file = new File("media/music.wav");
+            AudioInputStream audioInputStream =
+                    AudioSystem.getAudioInputStream(this.
+                            getClass().getClassLoader().getResource(file.getPath()));
+            clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
         //Setting up canvas variable
         BorderPane mainPane = new BorderPane();
         canvas = new ResizableCanvas(g -> draw(g), mainPane);
@@ -87,28 +109,6 @@ public class CustomMainMenuScene extends AbstractScene {
                 draw(g2d);
             }
         }.start();
-
-        //Hover event...
-        canvas.setOnMouseMoved(event -> {
-          /*  for (Shape s: canvasDrawer.getClickableSurfaces()) {
-                if (s.contains(new Point2D.Double(event.getX(), event.getY()))){
-
-                }
-
-            }*/
-        });
-
-        //Click event...
-        canvas.setOnMouseMoved(event -> {
-            for (Shape s: canvasDrawer.getClickableSurfaces()) {
-                if (s.contains(new Point2D.Double(event.getX(), event.getY()))){
-
-                }
-
-            }
-
-
-        });
 
         return canvas;
     }
@@ -143,7 +143,7 @@ public class CustomMainMenuScene extends AbstractScene {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
         mediaPlayer.setAutoPlay(true);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.setCycleCount(Integer.MAX_VALUE);
 
         return new MediaView(mediaPlayer);
     }

@@ -75,6 +75,11 @@ public class StandardCanvasScene extends AbstractScene{
         return new Scene(mainPane);
     }
 
+    @Override
+    public void callBack() {
+
+    }
+
     private void update(double v) {
         canvasDrawer.update(v);
     }

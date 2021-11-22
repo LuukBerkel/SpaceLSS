@@ -25,8 +25,10 @@ public abstract class AbstractScene {
         this.stage.setScene(scene);
         this.stage.setFullScreen(true);
         this.stage.show();
+        callBack();
     }
 
     public abstract Scene setupsScene();
+    public abstract void callBack();
     //endregion
 }

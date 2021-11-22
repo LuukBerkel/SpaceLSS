@@ -58,5 +58,10 @@ public class StandardVideoScene extends AbstractScene {
 
         return scene;
     }
+
+    @Override
+    public void callBack() {
+
+    }
     //endregion
 }
