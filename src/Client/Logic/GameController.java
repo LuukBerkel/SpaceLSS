@@ -2,6 +2,7 @@ package Client.Logic;
 
 import Client.Scene.Canvas.Customized.MainMenuUnit;
 import Client.Scene.Canvas.Customized.SplashScreenUnit;
+import Client.Scene.Canvas.Standardized.WaiterUnit;
 import Client.Scene.JavaFX.Customized.CustomMainMenuView;
 import Client.Scene.JavaFX.Customized.CustomSpashScreenView;
 import Client.Scene.JavaFX.Standardized.StandardCanvasView;
@@ -24,7 +25,7 @@ public class GameController {
     }
 
     public void startupRoutine() {
-        CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage,  new MainMenuUnit());
+        CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage, this);
         CustomSpashScreenView standardCanvasScene = new CustomSpashScreenView(stage, customMainMenuScene);
 
 
@@ -34,6 +35,19 @@ public class GameController {
         this.stage.show();
 
         standardCanvasScene.switchToView();
+    }
+
+    public void instructionHandler(String instruction){
+        if (instruction.equals("@Main: USA")){
+            StandardCanvasView standardCanvasView = new StandardCanvasView(stage, new WaiterUnit("/images/dragon.jpg", "Wachten op server en de andere speler", "Fun Question: Wat is de naam deze ruimte capsule?"));
+            standardCanvasView.switchToView();
+        } else if (instruction.equals("@Main: USSR")){
+            StandardCanvasView standardCanvasView = new StandardCanvasView(stage, new WaiterUnit("/images/soyuz.jpg", "Wachten op server en de andere speler", "Fun Question: Wat is de naam deze ruimte capsule?"));
+            standardCanvasView.switchToView();
+        } else if (instruction.equals("@Main: Quit")){
+            System.exit(0);
+        }
+
     }
 
     //public void

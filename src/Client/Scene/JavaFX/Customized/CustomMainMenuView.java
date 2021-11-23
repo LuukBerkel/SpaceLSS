@@ -1,5 +1,7 @@
 package Client.Scene.JavaFX.Customized;
 
+import Client.Logic.GameController;
+import Client.Scene.Canvas.Customized.MainMenuUnit;
 import Client.Scene.Canvas.Customized.SplashBack;
 import Client.Scene.Canvas.Util.CanvasDrawer;
 import Client.Scene.JavaFX.Util.AbstractView;
@@ -17,6 +19,7 @@ import org.jfree.fx.ResizableCanvas;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -25,10 +28,12 @@ public class CustomMainMenuView extends AbstractView  {
 
     //region Setup
     private AnimationTimer animationThread;
+    private GameController controller;
 
-    public CustomMainMenuView(Stage stage, CanvasDrawer canvasDrawer) {
+    public CustomMainMenuView(Stage stage, GameController controller) {
         super(stage);
-        this.canvasDrawer = canvasDrawer;
+        this.canvasDrawer = new MainMenuUnit();
+        this.controller = controller;
         giveOwnerView(setupsView());
     }
 
@@ -43,7 +48,6 @@ public class CustomMainMenuView extends AbstractView  {
 
         //Stopping of media
         mediaPlayer.stop();
-        MusicHandler.stopTrack();
     }
 
     /***
@@ -105,6 +109,17 @@ public class CustomMainMenuView extends AbstractView  {
             }
         };
 
+        //When clicked the controller will say what is next.
+        canvas.setOnMouseClicked(e -> {
+            String response = canvasDrawer.getClickableSurfaces(
+                    new Point2D.Double(e.getX(), e.getY()));
+            if (response != null) {
+                controller.instructionHandler(response);
+                deactivateView();
+            }
+
+        });
+
         return canvas;
     }
 
@@ -112,14 +127,15 @@ public class CustomMainMenuView extends AbstractView  {
      * drawer methods for canvas..
      */
     private void draw(FXGraphics2D g) {
-        g.setTransform(new AffineTransform());
+
         g.setBackground(new Color(0, 0, 0, 0f));
+        g.setTransform(new AffineTransform());
         g.clearRect(0, 0, (int) canvas.getWidth(), (int) canvas.getHeight());
         canvasDrawer.draw(g);
     }
 
     private void update(double v) {
-        //not needed for this scene
+        canvasDrawer.update(v);
     }
 
     //endregion

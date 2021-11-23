@@ -9,10 +9,13 @@ public class MusicHandler {
 
 
     private static Clip clip;
+    private static String targetFile;
 
-    public static void loopTrack(String targetFile){
+    public static void loopTrack(String target){
+
+        if (targetFile == null || !targetFile.equals(target) || !clip.isRunning())
         try {
-            File file = new File(targetFile);
+            File file = new File(target);
             AudioInputStream audioInputStream =
                     AudioSystem.getAudioInputStream(
                            MusicHandler.class.getClassLoader().getResource(file.getPath()));
@@ -23,6 +26,7 @@ public class MusicHandler {
         } catch (Exception e){
             e.printStackTrace();
         }
+        targetFile = target;
     }
 
     public static void stopTrack(){

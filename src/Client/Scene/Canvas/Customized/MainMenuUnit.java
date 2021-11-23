@@ -10,6 +10,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
@@ -29,9 +30,12 @@ public class MainMenuUnit implements CanvasDrawer {
     private RoundRectangle2D usButton;
     private RoundRectangle2D ussrButton;
     private RoundRectangle2D quitButton;
+    private Rectangle2D backgroundTitle;
 
     private HashMap<RoundRectangle2D, String> buttonMap= new
     HashMap<>();
+
+
 
     public MainMenuUnit() {
         this.screenSize = GameController.targetSize;
@@ -52,20 +56,25 @@ public class MainMenuUnit implements CanvasDrawer {
         usButton = new RoundRectangle2D.Double(230 * screenSize[0], 135 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
         ussrButton = new RoundRectangle2D.Double(750 * screenSize[0], 135 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
         quitButton = new RoundRectangle2D.Double(1270 * screenSize[0], 135 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
+        backgroundTitle = new Rectangle2D.Double(230 * screenSize[0], 105 * screenSize[1], 1520 * screenSize[0], 10 * screenSize[1]);
 
-        buttonMap.put(usButton, "usChoice");
-        buttonMap.put(ussrButton, "ussrChoice");
-        buttonMap.put(quitButton, "quitChoice");
+        //Actions
+        buttonMap.put(usButton, "@Main: USA");
+        buttonMap.put(ussrButton, "@Main: USSR");
+        buttonMap.put(quitButton, "@Main: Quit");
     }
 
     @Override
     public void draw(FXGraphics2D graphics2D) {
-        graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.025f));
+
+
 
         graphics2D.setColor(Color.white);
+        graphics2D.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, (int)(60 * screenSize[0])));
+        graphics2D.drawString("Kies een land voor je ruimteprogramma: ", (int) (470 * screenSize[0]), (int)(80 * screenSize[1]));
+        graphics2D.fill(backgroundTitle);
 
-        graphics2D.drawString("test", 230, 20);
-
+        graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.025f));
         //graphics2D.draw(usButton);
         graphics2D.setPaint(new TexturePaint(usFlag, new Rectangle2D.Double(usButton.getX(),usButton.getY(),usButton.getWidth(),usButton.getHeight())));
         graphics2D.fill(usButton);
@@ -84,7 +93,6 @@ public class MainMenuUnit implements CanvasDrawer {
 
     @Override
     public void update(double time) {
-
     }
 
     @Override

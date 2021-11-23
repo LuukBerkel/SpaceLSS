@@ -3,6 +3,7 @@ package Client.Scene.JavaFX.Standardized;
 import Client.Scene.Canvas.Customized.SplashScreenUnit;
 import Client.Scene.Canvas.Util.CanvasDrawer;
 import Client.Scene.JavaFX.Util.AbstractView;
+import Client.Scene.Music.MusicHandler;
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -34,6 +35,7 @@ public class StandardCanvasView extends AbstractView {
     @Override
     public void deactivateView() {
         animationThread.stop();
+        MusicHandler.stopTrack();
     }
 
     //endregion
@@ -50,7 +52,7 @@ public class StandardCanvasView extends AbstractView {
 
         //Setting up update variables
         FXGraphics2D g2d = new FXGraphics2D(canvas.getGraphicsContext2D());
-        new AnimationTimer() {
+        animationThread = new AnimationTimer() {
             long last = -1;
 
             @Override
@@ -62,7 +64,7 @@ public class StandardCanvasView extends AbstractView {
                 last = now;
                 draw(g2d);
             }
-        }.start();
+        };
 
         //Click event...
         canvas.setOnMouseClicked(event -> {
