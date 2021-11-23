@@ -1,5 +1,6 @@
 package Client.Scene.Canvas.Customized;
 
+import Client.Logic.GameController;
 import Client.Scene.Canvas.Util.CanvasDrawer;
 import Client.Scene.Canvas.Util.Rescaler;
 import org.jfree.fx.FXGraphics2D;
@@ -9,12 +10,14 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class MainMenuUnit implements CanvasDrawer {
@@ -22,27 +25,37 @@ public class MainMenuUnit implements CanvasDrawer {
     private double[] screenSize;
     private BufferedImage usFlag;
     private BufferedImage ussrFlag;
+    private BufferedImage quitFlag;
     private RoundRectangle2D usButton;
     private RoundRectangle2D ussrButton;
     private RoundRectangle2D quitButton;
 
-    public MainMenuUnit(double[] ScreenSize) {
-        this.screenSize = ScreenSize;
+    private HashMap<RoundRectangle2D, String> buttonMap= new
+    HashMap<>();
+
+    public MainMenuUnit() {
+        this.screenSize = GameController.targetSize;
 
         //Parsing assets scene
         try {
             this.usFlag = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource("/images/us.png"))), ScreenSize[0]/2.5, ScreenSize[1]/2.5);
+                    .getResource("/images/us.png"))), screenSize[0]/2.5, screenSize[1]/2.5);
             this.ussrFlag = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource("/images/ussr.png"))), ScreenSize[0]/2.5, ScreenSize[1]/2.5);
+                    .getResource("/images/ussr.png"))), screenSize[0]/2.5, screenSize[1]/2.5);
+            this.quitFlag = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
+                    .getResource("/images/exit.png"))), screenSize[0]/2.5, screenSize[1]/2.5);
         }catch (Exception e){
             e.printStackTrace();
         }
 
         //Buttons
-        usButton = new RoundRectangle2D.Double(200 * screenSize[0], 125 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
-        ussrButton = new RoundRectangle2D.Double(770 * screenSize[0], 125 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
-        quitButton = new RoundRectangle2D.Double(1370 * screenSize[0], 125 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
+        usButton = new RoundRectangle2D.Double(230 * screenSize[0], 135 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
+        ussrButton = new RoundRectangle2D.Double(750 * screenSize[0], 135 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
+        quitButton = new RoundRectangle2D.Double(1270 * screenSize[0], 135 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
+
+        buttonMap.put(usButton, "usChoice");
+        buttonMap.put(ussrButton, "ussrChoice");
+        buttonMap.put(quitButton, "quitChoice");
     }
 
     @Override
@@ -50,6 +63,9 @@ public class MainMenuUnit implements CanvasDrawer {
         graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.025f));
 
         graphics2D.setColor(Color.white);
+
+        graphics2D.drawString("test", 230, 20);
+
         //graphics2D.draw(usButton);
         graphics2D.setPaint(new TexturePaint(usFlag, new Rectangle2D.Double(usButton.getX(),usButton.getY(),usButton.getWidth(),usButton.getHeight())));
         graphics2D.fill(usButton);
@@ -59,6 +75,10 @@ public class MainMenuUnit implements CanvasDrawer {
         graphics2D.setPaint(new TexturePaint(ussrFlag, new Rectangle2D.Double(ussrButton.getX(),ussrButton.getY(),ussrButton.getWidth(),ussrButton.getHeight())));
         graphics2D.fill(ussrButton);
 
+        graphics2D.setColor(Color.white);
+        //graphics2D.draw(ussrButton);
+        graphics2D.setPaint(new TexturePaint(quitFlag, new Rectangle2D.Double(quitButton.getX(),quitButton.getY(),quitButton.getWidth(),quitButton.getHeight())));
+        graphics2D.fill(quitButton);
 
     }
 
@@ -68,7 +88,10 @@ public class MainMenuUnit implements CanvasDrawer {
     }
 
     @Override
-    public List<Shape> getClickableSurfaces() {
+    public String getClickableSurfaces(Point2D point2D) {
+        for (Map.Entry<RoundRectangle2D, String> entry: buttonMap.entrySet()) {
+            if (entry.getKey().contains(point2D))return entry.getValue();
+        }
         return null;
     }
 }

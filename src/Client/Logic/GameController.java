@@ -1,9 +1,10 @@
 package Client.Logic;
 
 import Client.Scene.Canvas.Customized.MainMenuUnit;
-import Client.Scene.Canvas.Customized.SpashScreenUnit;
-import Client.Scene.JavaFX.CustomMainMenuScene;
-import Client.Scene.JavaFX.StandardCanvasScene;
+import Client.Scene.Canvas.Customized.SplashScreenUnit;
+import Client.Scene.JavaFX.Customized.CustomMainMenuView;
+import Client.Scene.JavaFX.Customized.CustomSpashScreenView;
+import Client.Scene.JavaFX.Standardized.StandardCanvasView;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -13,7 +14,7 @@ import java.awt.*;
 public class GameController {
 
     private Stage stage;
-    private double[] targetSize;
+    public static double[] targetSize;
 
     public GameController(Stage stage) {
         this.stage = stage;
@@ -23,8 +24,8 @@ public class GameController {
     }
 
     public void startupRoutine() {
-        CustomMainMenuScene customMainMenuScene = new CustomMainMenuScene(stage, "media/backgroundvid.mp4", new MainMenuUnit(targetSize));
-        StandardCanvasScene standardCanvasScene = new StandardCanvasScene(stage, new SpashScreenUnit(targetSize, customMainMenuScene));
+        CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage,  new MainMenuUnit());
+        CustomSpashScreenView standardCanvasScene = new CustomSpashScreenView(stage, customMainMenuScene);
 
 
         //Setup Scene
@@ -32,7 +33,7 @@ public class GameController {
         this.stage.setScene(new Scene(new BorderPane()));
         this.stage.show();
 
-        standardCanvasScene.switchToScene();
+        standardCanvasScene.switchToView();
     }
 
     //public void
