@@ -40,7 +40,7 @@ public class WaiterUnit implements CanvasDrawer {
     public void draw(FXGraphics2D graphics2D) {
         graphics2D.drawImage(backgroundImage, (int) (GameController.targetSize[0] * 0 ),  (int) (GameController.targetSize[1] * 0 ), null);
         graphics2D.setColor(Color.white);
-        graphics2D.fill(new Rectangle2D.Double(230 * GameController.targetSize[0], 800 * GameController.targetSize[1],  1460, 10));
+        graphics2D.fill(new Rectangle2D.Double(230 * GameController.targetSize[0], 800 * GameController.targetSize[1],  1460 *  GameController.targetSize[0], 10 *  GameController.targetSize[1]));
         graphics2D.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, (int)(60 * GameController.targetSize[0])));
         graphics2D.drawString(textWaiterScreen, (int) (230 * GameController.targetSize[0]), (int)(880 * GameController.targetSize[1]));
         graphics2D.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, (int)(30 * GameController.targetSize[0])));
