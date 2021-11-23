@@ -4,6 +4,7 @@ import Client.Scene.Canvas.Util.CanvasDrawer;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -35,7 +36,7 @@ public class CustomMainMenuScene extends AbstractScene {
     }
 
     @Override
-    public Scene setupsScene() {
+    public Pane setupsScene() {
         //Media file
         File mediaFile = new File(mediaPath);
 
@@ -60,9 +61,9 @@ public class CustomMainMenuScene extends AbstractScene {
         pane.getChildren().add(InitMediaPlayer());
         pane.getChildren().add(InitCanvas());
 
-        Scene scene = new Scene(pane);
 
-        return scene;
+
+        return pane;
     }
 
 

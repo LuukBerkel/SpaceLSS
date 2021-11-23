@@ -23,6 +23,8 @@ public class MainMenuUnit implements CanvasDrawer {
     private BufferedImage usFlag;
     private BufferedImage ussrFlag;
     private RoundRectangle2D usButton;
+    private RoundRectangle2D ussrButton;
+    private RoundRectangle2D quitButton;
 
     public MainMenuUnit(double[] ScreenSize) {
         this.screenSize = ScreenSize;
@@ -38,17 +40,26 @@ public class MainMenuUnit implements CanvasDrawer {
         }
 
         //Buttons
-        usButton = new RoundRectangle2D.Double(400 * screenSize[0], 125 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 25 *screenSize[0], 25 * screenSize[1]);
-
+        usButton = new RoundRectangle2D.Double(200 * screenSize[0], 125 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
+        ussrButton = new RoundRectangle2D.Double(770 * screenSize[0], 125 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
+        quitButton = new RoundRectangle2D.Double(1370 * screenSize[0], 125 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
     }
 
     @Override
     public void draw(FXGraphics2D graphics2D) {
-        graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f));
+        graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.025f));
+
         graphics2D.setColor(Color.white);
-        graphics2D.draw(usButton);
+        //graphics2D.draw(usButton);
         graphics2D.setPaint(new TexturePaint(usFlag, new Rectangle2D.Double(usButton.getX(),usButton.getY(),usButton.getWidth(),usButton.getHeight())));
         graphics2D.fill(usButton);
+
+        graphics2D.setColor(Color.white);
+        //graphics2D.draw(ussrButton);
+        graphics2D.setPaint(new TexturePaint(ussrFlag, new Rectangle2D.Double(ussrButton.getX(),ussrButton.getY(),ussrButton.getWidth(),ussrButton.getHeight())));
+        graphics2D.fill(ussrButton);
+
+
     }
 
     @Override

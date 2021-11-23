@@ -1,13 +1,14 @@
 package Client.Scene.JavaFX;
 
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public abstract class AbstractScene {
 
     //region Variables
     private final Stage stage;
-    private Scene scene;
+    private Pane pane;
     //endregion
 
     //region Setup
@@ -15,20 +16,18 @@ public abstract class AbstractScene {
         this.stage = stage;
     }
 
-    public void giveOwnerScenes(Scene scene){
-        this.scene = scene;
+    public void giveOwnerScenes(Pane pane){
+        this.pane = pane;
     }
     //endregion
 
     //region External
     public void switchToScene(){
-        this.stage.setScene(scene);
-        this.stage.setFullScreen(true);
-        this.stage.show();
+        this.stage.getScene().setRoot(pane);
         callBack();
     }
 
-    public abstract Scene setupsScene();
+    public abstract Pane setupsScene();
     public abstract void callBack();
     //endregion
 }

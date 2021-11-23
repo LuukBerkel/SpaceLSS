@@ -1,6 +1,7 @@
 package Client.Scene.JavaFX;
 
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -27,7 +28,7 @@ public class StandardVideoScene extends AbstractScene {
     private String mediaPath;
 
     @Override
-    public Scene setupsScene() {
+    public Pane setupsScene() {
         //Media file
         File mediaFile = new File(mediaPath);
 
@@ -56,7 +57,7 @@ public class StandardVideoScene extends AbstractScene {
         });
 
 
-        return scene;
+        return new BorderPane(mediaView);
     }
 
     @Override

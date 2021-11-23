@@ -4,6 +4,7 @@ import Client.Scene.Canvas.Util.CanvasDrawer;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.jfree.fx.FXGraphics2D;
 import org.jfree.fx.ResizableCanvas;
@@ -28,7 +29,7 @@ public class StandardCanvasScene extends AbstractScene{
     private ResizableCanvas canvas;
 
     @Override
-    public Scene setupsScene() {
+    public Pane setupsScene() {
         //Setting up canvas variable
         BorderPane mainPane = new BorderPane();
         canvas = new ResizableCanvas(g -> draw(g), mainPane);
@@ -72,7 +73,7 @@ public class StandardCanvasScene extends AbstractScene{
 
         });
 
-        return new Scene(mainPane);
+        return mainPane;
     }
 
     @Override
