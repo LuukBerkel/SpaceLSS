@@ -22,7 +22,9 @@ public class ComHolder {
         sending = new ComSending(new DataOutputStream(socket.getOutputStream()));
     }
 
-    //TODO Make writing methods... still not knowing how because other classes.
+    public void sendInstruction(String state){
+        sending.addInstructionToQueue(state);
+    }
 
 
 }

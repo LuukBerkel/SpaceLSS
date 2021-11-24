@@ -11,14 +11,14 @@ public class ComReceiving {
 
     public ComReceiving(GameController controller, DataInputStream input){
         new Thread(() -> {
-            try {
-                String message = input.readUTF();
-                controller.instructionHandler(message);
-            } catch (IOException e) {
-                e.printStackTrace();
+            while (true) {
+                try {
+                    String message = input.readUTF();
+                    controller.instructionHandler(message);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-
-
         }).start();
     }
 }

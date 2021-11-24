@@ -44,6 +44,9 @@ public class GameController {
         } else if (instruction.equals("@Main: USSR")){
             StandardCanvasView standardCanvasView = new StandardCanvasView(stage, new WaiterUnit("/images/soyuz.jpg", "Wachten op server en de andere speler", "Fun Question: Wat is de naam deze ruimte capsule?"));
             standardCanvasView.switchToView();
+
+
+
         } else if (instruction.equals("@Main: Quit")){
             System.exit(0);
         }
