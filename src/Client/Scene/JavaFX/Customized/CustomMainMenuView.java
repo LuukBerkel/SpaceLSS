@@ -60,7 +60,7 @@ public class CustomMainMenuView extends AbstractView  {
 
         //Starting of media
         mediaPlayer.play();
-        MusicHandler.loopTrack("media/music.wav");
+        MusicHandler.loopTrack("media/music.mp3");
     }
 
     /**

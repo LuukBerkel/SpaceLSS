@@ -1,5 +1,6 @@
 package Server.Coms;
 
+import Server.Logic.SessionHandler;
 import Server.Logic.SessionPlayerType;
 import Server.Logic.SessionTypeMapper;
 import Server.Logic.SessionsController;
@@ -22,6 +23,7 @@ public class ConnectionHandler
     private DataOutputStream output;
     private SessionsController controller;
     private Reflections reflections;
+    private SessionHandler session;
 
     public ConnectionHandler(Socket client, SessionsController controller) {
         this.controller = controller;
@@ -70,7 +72,7 @@ public class ConnectionHandler
     public void authenticatedConnection(JsonObject message){
         SessionPlayerType type = SessionTypeMapper.mapPlayerType(message.getString("country"));
         if (type != null) {
-            
+
         }
     }
 
