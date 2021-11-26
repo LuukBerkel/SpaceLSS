@@ -14,22 +14,24 @@ public class SessionsController {
     private Queue<ConnectionHandler> readyToSession = new PriorityQueue<>();
 
     public void SubToSession(ConnectionHandler handler){
-        if (!readyToSession.isEmpty()){
-            if (readyToSession.peek().type != handler.type) {
-                //Creating handler
-                SessionHandler sessionHandler = new SessionHandler(handler, readyToSession.peek());
+        synchronized (readyToSession) {
+            if (!readyToSession.isEmpty()) {
+                if (readyToSession.peek().type != handler.type) {
+                    //Creating handler
+                    SessionHandler sessionHandler = new SessionHandler(handler, readyToSession.peek());
 
-                //Setting handler
-                handler.session = sessionHandler;
-                readyToSession.peek().session = sessionHandler;
+                    //Setting handler
+                    handler.session = sessionHandler;
+                    readyToSession.poll().session = sessionHandler;
+                } else{
+                    //Sending back failed
+                    handler.connectionSendBack(CommunicationLibrary.GAME_ERROR_ALREADY_CHOSEN);
+                    readyToSession.poll().connectionSendBack(CommunicationLibrary.GAME_ERROR_ALREADY_CHOSEN);
+                }
+            } else {
+                //Do nothing and await other request...
+                readyToSession.add(handler);
             }
-            //Sending back failed
-            handler.connectionSendBack(CommunicationLibrary.GAME_ERROR_ALREADY_CHOSEN);
-            readyToSession.peek().connectionSendBack(CommunicationLibrary.GAME_ERROR_ALREADY_CHOSEN);
-            readyToSession.clear();
         }
-
-        readyToSession.add(handler);
-        //Do nothing and await other request...
     }
 }
