@@ -2,24 +2,19 @@ package Server.Coms;
 
 import Server.Logic.SessionHandler;
 import Server.Logic.SessionPlayerType;
-import Server.Logic.SessionTypeMapper;
 import Server.Logic.SessionsController;
+import Shared.CommunicationLibrary;
+import Shared.MethodJumper;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.StringReader;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.Socket;
-
-import static Server.Logic.SessionTypeMapper.mapPlayerType;
 
 
 public class ConnectionHandler
@@ -39,7 +34,7 @@ public class ConnectionHandler
 
     public ConnectionHandler(Socket client, SessionsController controller) {
         this.controller = controller;
-        this.reflections = new Reflections( this, new MethodAnnotationsScanner());
+        this.reflections = new Reflections( ConnectionHandler.class, new MethodAnnotationsScanner());
         try {
             this.input = new DataInputStream(client.getInputStream());
             this.output = new DataOutputStream(client.getOutputStream());
@@ -54,51 +49,42 @@ public class ConnectionHandler
         new Thread(() -> {
             while (true) {
                 try {
+                    String message= input.readUTF();
+                    for (Method e: reflections.getMethodsAnnotatedWith(MethodJumper.class)) {
+                        if (e.getAnnotation(MethodJumper.class).command().contains(message)){
 
-                    //Parsing Jobject
-                    JsonReader jsonReader = Json.createReader(new StringReader(input.readUTF()));
-                    JsonObject object = jsonReader.readObject();
-                    jsonReader.close();
-
-
-
-
-
-                        //Reading Jobject
-                        if (object.getString("command") != null) {
-
-                            for (Method e: reflections.getMethodsAnnotatedWith(MethodJumper.class)) {
-                                if (e.getAnnotation(MethodJumper.class).command().equals(object.getString("command"))){
-
-                                    e.invoke(this, object);
-                                }
-                                System.out.println(e.getName());
-                            }
+                            e.invoke(this, message);
                         }
+                        System.out.println(e.getName());
+                    }
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
+                } catch (IOException | InvocationTargetException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
             }
         }).start();
     }
 
-    @MethodJumper(command = "authenticate")
-    public void authenticatedConnection(JsonObject message){
-        System.out.println(message.toString());
-        type = mapPlayerType(message.getString("scene"));
+    @MethodJumper(command = CommunicationLibrary.GAME_REQUEST_USA)
+    public void authenticatedConnectionUSA(String message){
+        type = SessionPlayerType.USA;
         controller.SubToSession(this);
     }
+
+    @MethodJumper(command = CommunicationLibrary.GAME_REQUEST_USSR)
+    public void authenticatedConnectionUSSR(String message){
+        type = SessionPlayerType.USSR;
+        controller.SubToSession(this);
+    }
+
+
+
     //endregion
 
     //region Outgoing
-    public void connectionSendBack(JsonObject object){
+    public void connectionSendBack(String message){
         try {
-            this.output.writeUTF(object.toString());
+            this.output.writeUTF(message);
         } catch (IOException e) {
             e.printStackTrace();
         }

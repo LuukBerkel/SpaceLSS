@@ -3,6 +3,7 @@ package Client.Scene.Canvas.Customized;
 import Client.Logic.GameController;
 import Client.Scene.Canvas.Util.CanvasDrawer;
 import Client.Scene.Canvas.Util.Rescaler;
+import Shared.CommunicationLibrary;
 import org.jfree.fx.FXGraphics2D;
 
 import javax.imageio.ImageIO;
@@ -59,9 +60,9 @@ public class MainMenuUnit implements CanvasDrawer {
         backgroundTitle = new Rectangle2D.Double(230 * screenSize[0], 105 * screenSize[1], 1520 * screenSize[0], 10 * screenSize[1]);
 
         //Actions
-        buttonMap.put(usButton, "@Main: USA");
-        buttonMap.put(ussrButton, "@Main: USSR");
-        buttonMap.put(quitButton, "@Main: Quit");
+        buttonMap.put(usButton, CommunicationLibrary.GAME_REQUEST_USA);
+        buttonMap.put(ussrButton, CommunicationLibrary.GAME_REQUEST_USSR);
+        buttonMap.put(quitButton, CommunicationLibrary.GAME_INTERNAL_QUIT);
     }
 
     @Override

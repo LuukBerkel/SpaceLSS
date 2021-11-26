@@ -2,8 +2,7 @@ package Client.Coms;
 
 import Client.Logic.GameController;
 
-import javax.json.JsonObject;
-import javax.xml.crypto.Data;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -23,8 +22,8 @@ public class ComHolder {
         sending = new ComSending(new DataOutputStream(socket.getOutputStream()));
     }
 
-    public void sendInstruction(JsonObject object){
-        sending.addInstructionToQueue(object.toString());
+    public void sendInstruction(String instruction){
+        sending.addInstructionToQueue(instruction);
     }
 
 

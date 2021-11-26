@@ -2,7 +2,6 @@ package Server.Logic;
 
 import Server.Coms.ConnectionHandler;
 
-import javax.json.JsonObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,12 +13,13 @@ public class SessionHandler {
     public SessionHandler(ConnectionHandler playerOne,
                           ConnectionHandler playerTwo) {
         this.sessionPlayers = new ArrayList<>();
-
+        this.sessionPlayers.add(playerOne);
+        this.sessionPlayers.add(playerTwo);
     }
 
-    public void GlobalSessionResponse(JsonObject response){
+    public void GlobalSessionResponse(String message){
         for (ConnectionHandler handler: sessionPlayers) {
-            handler.connectionSendBack(response);
+            handler.connectionSendBack(message);
         }
     }
 }

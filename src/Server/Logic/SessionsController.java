@@ -1,6 +1,7 @@
 package Server.Logic;
 
 import Server.Coms.ConnectionHandler;
+import Shared.CommunicationLibrary;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -21,14 +22,11 @@ public class SessionsController {
                 //Setting handler
                 handler.session = sessionHandler;
                 readyToSession.peek().session = sessionHandler;
-
-                //Sending back response Succes
-                handler.connectionSendBack(JsonResponses.getRequestOk());
-                readyToSession.peek().connectionSendBack(JsonResponses.getRequestOk());
             }
             //Sending back failed
-            handler.connectionSendBack(JsonResponses.getRequestFail());
-            readyToSession.peek().connectionSendBack(JsonResponses.getRequestFail());
+            handler.connectionSendBack(CommunicationLibrary.GAME_ERROR_ALREADY_CHOSEN);
+            readyToSession.peek().connectionSendBack(CommunicationLibrary.GAME_ERROR_ALREADY_CHOSEN);
+            readyToSession.clear();
         }
 
         readyToSession.add(handler);
