@@ -16,6 +16,7 @@ public class AcceptHandler
 
     public AcceptHandler() {
         this.activeConnections = new ArrayList<>();
+        this.sessionsController = new SessionsController();
 
     }
 
@@ -23,12 +24,13 @@ public class AcceptHandler
     {
        try {
            //Setting up server-socket
-           this.serverSocket = new ServerSocket();
+           this.serverSocket = new ServerSocket(8000);
 
            //Looping through requests
            while (true){
                ConnectionHandler handler = new
                        ConnectionHandler(this.serverSocket.accept(), sessionsController);
+               System.out.println("new client accepted");
                activeConnections.add(handler);
                handler.startConnection();
            }

@@ -13,12 +13,14 @@ public class ComSending {
     public ComSending(DataOutputStream output) {
         new Thread(() -> {
             while (true){
-                if (!sendQueue.isEmpty()){
-                    try {
-                        output.writeUTF(sendQueue.poll());
-                    } catch (IOException e) {
-                        //TODO add saver
-                        e.printStackTrace();
+                synchronized (sendQueue) {
+                    if (!sendQueue.isEmpty()) {
+                        try {
+                            output.writeUTF(sendQueue.poll());
+                        } catch (IOException e) {
+                            //TODO add saver
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
@@ -26,7 +28,9 @@ public class ComSending {
     }
 
     public void addInstructionToQueue(String instruction){
-        this.sendQueue.add(instruction);
+        synchronized (sendQueue) {
+            this.sendQueue.add(instruction);
+        }
     }
 }
 

@@ -2,7 +2,6 @@ package Client.Scene.JavaFX.Customized;
 
 import Client.Logic.GameController;
 import Client.Scene.Canvas.Customized.MainMenuUnit;
-import Client.Scene.Canvas.Customized.SplashBack;
 import Client.Scene.Canvas.Util.CanvasDrawer;
 import Client.Scene.JavaFX.Util.AbstractView;
 import Client.Scene.Music.MusicHandler;

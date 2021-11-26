@@ -1,5 +1,5 @@
 package Client.Scene.Canvas.Customized;
 
-public interface SplashBack {
+public interface CallBack {
     public void animationEnded();
 }

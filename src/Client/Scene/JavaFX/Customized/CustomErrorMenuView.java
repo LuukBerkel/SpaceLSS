@@ -1,6 +1,7 @@
 package Client.Scene.JavaFX.Customized;
 
 import Client.Scene.Canvas.Customized.CallBack;
+import Client.Scene.Canvas.Customized.ErrorScreenUnit;
 import Client.Scene.Canvas.Customized.SplashScreenUnit;
 import Client.Scene.Canvas.Util.CanvasDrawer;
 import Client.Scene.JavaFX.Util.AbstractView;
@@ -14,18 +15,17 @@ import org.jfree.fx.ResizableCanvas;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 
-public class CustomSpashScreenView  extends AbstractView implements CallBack {
-
+public class CustomErrorMenuView  extends AbstractView implements CallBack{
 
     //region Constructor
     private final CanvasDrawer canvasDrawer;
     private AnimationTimer animationThread;
     private AbstractView nextInLine;
 
-    public CustomSpashScreenView(Stage stage, AbstractView nextInLine) {
+    public CustomErrorMenuView(Stage stage, AbstractView nextInLine, String message) {
         super(stage);
         giveOwnerView(setupsView());
-        this.canvasDrawer = new SplashScreenUnit(this);
+        this.canvasDrawer = new ErrorScreenUnit(message, this);
         this.nextInLine = nextInLine;
     }
 

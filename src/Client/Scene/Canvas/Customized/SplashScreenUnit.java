@@ -3,7 +3,6 @@ package Client.Scene.Canvas.Customized;
 import Client.Logic.GameController;
 import Client.Scene.Canvas.Util.CanvasDrawer;
 import Client.Scene.Canvas.Util.Rescaler;
-import Client.Scene.JavaFX.Util.AbstractView;
 import org.jfree.fx.FXGraphics2D;
 
 import javax.imageio.ImageIO;
@@ -20,7 +19,7 @@ public class SplashScreenUnit implements CanvasDrawer {
     private final double[] screenSizes;
     private final int blankTime= 1;
     private final int fadeTime = 3;
-    private SplashBack splashBack;
+    private CallBack splashBack;
 
 
     //Resources
@@ -30,7 +29,7 @@ public class SplashScreenUnit implements CanvasDrawer {
     private float iterationFade = 0f;
     private double timePast = 0;
 
-    public SplashScreenUnit(SplashBack splashBack) {
+    public SplashScreenUnit(CallBack splashBack) {
         //Parsing assets scene
         try {
             this.logo = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()

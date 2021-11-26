@@ -3,21 +3,23 @@ package Server.Logic;
 import Server.Coms.ConnectionHandler;
 
 import javax.json.JsonObject;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SessionHandler {
 
-    private final HashMap<SessionPlayerType, ConnectionHandler> sessionPlayers;
+    private final List<ConnectionHandler> sessionPlayers;
+    public SessionHandler(ConnectionHandler playerOne,
+                          ConnectionHandler playerTwo) {
+        this.sessionPlayers = new ArrayList<>();
 
-    public SessionHandler(Map.Entry<SessionPlayerType, ConnectionHandler> playerOne,
-                          Map.Entry<SessionPlayerType, ConnectionHandler> playerTwo) {
-        this.sessionPlayers = new HashMap<>();
-        this.sessionPlayers.put(playerOne.getKey(), playerOne.getValue());
-        this.sessionPlayers.put(playerTwo.getKey(), playerTwo.getValue());
     }
 
     public void GlobalSessionResponse(JsonObject response){
-
+        for (ConnectionHandler handler: sessionPlayers) {
+            handler.connectionSendBack(response);
+        }
     }
 }
