@@ -22,4 +22,10 @@ public class SessionHandler {
             handler.connectionSendBack(message);
         }
     }
+
+    public void KillSession(){
+        for (ConnectionHandler handler: sessionPlayers) {
+            handler.KillConnection();
+        }
+    }
 }

@@ -23,6 +23,7 @@ public class ConnectionHandler
     //Connection variable
     private DataInputStream input;
     private DataOutputStream output;
+    private Socket client;
 
     //Logic variables
     private Reflections reflections;
@@ -34,6 +35,7 @@ public class ConnectionHandler
 
     public ConnectionHandler(Socket client, SessionsController controller) {
         this.controller = controller;
+        this.client = client;
         this.reflections = new Reflections( ConnectionHandler.class, new MethodAnnotationsScanner());
         try {
             this.input = new DataInputStream(client.getInputStream());
@@ -60,6 +62,7 @@ public class ConnectionHandler
 
                 } catch (IOException | InvocationTargetException | IllegalAccessException e) {
                     e.printStackTrace();
+                    session.KillSession();
                 }
             }
         }).start();
@@ -87,11 +90,28 @@ public class ConnectionHandler
             this.output.writeUTF(message);
         } catch (IOException e) {
             e.printStackTrace();
+            session.KillSession();
         }
     }
     //endregion
 
-
+    public void KillConnection(){
+        try {
+            this.input.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            this.output.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            this.client.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 

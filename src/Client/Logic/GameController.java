@@ -68,8 +68,8 @@ public class GameController {
     @MethodJumper(command = CommunicationLibrary.GAME_REQUEST_USSR)
     private void MainMenuSendChoiceUSSR(String instruction){
         StandardCanvasView standardCanvasView = new StandardCanvasView(stage,
-                new WaiterUnit("/images/soyuz.jpg", "Wachten op server en de andere speler"
-                        , "Leuke vraag: Wat is de naam deze ruimte capsule?"));
+                new WaiterUnit("/images/soyuz.jpg", "Awaiting other player on server"
+                        , "Fun question: What is the name of this space capsule?"));
         standardCanvasView.switchToView();
         holder.sendInstruction(CommunicationLibrary.GAME_REQUEST_USSR);
     }
@@ -77,7 +77,8 @@ public class GameController {
     @MethodJumper(command = CommunicationLibrary.GAME_REQUEST_USA)
     private void MainMenuSendChoiceUSA(String instruction){
         StandardCanvasView standardCanvasView = new StandardCanvasView(stage, new WaiterUnit("/images/dragon.jpg"
-                , "Wachten op server en de andere speler", "Leuke vraag: Wat is de naam deze ruimte capsule?"));
+                , "Awaiting other player on server"
+                , "Fun question: What is the name of this space capsule?"));
         standardCanvasView.switchToView();
         holder.sendInstruction(CommunicationLibrary.GAME_REQUEST_USA);
     }
@@ -85,7 +86,7 @@ public class GameController {
     @MethodJumper(command = CommunicationLibrary.GAME_ERROR_ALREADY_CHOSEN)
     private void ErrorAlreadyChosenMain(String instruction){
         CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage, this);
-        CustomErrorMenuView errorMenuView = new CustomErrorMenuView(stage, customMainMenuScene, "Error: Er zijn twee dezelfde landen gekozen");
+        CustomErrorMenuView errorMenuView = new CustomErrorMenuView(stage, customMainMenuScene, "Error: Two the same country's are chosen");
         errorMenuView.switchToView();
     }
 
@@ -93,6 +94,14 @@ public class GameController {
     @MethodJumper(command = CommunicationLibrary.GAME_INTERNAL_QUIT)
     private void ApplicationQuitGame(String instruction){
         System.exit(0);
+    }
+
+    @MethodJumper(command = CommunicationLibrary.GAME_CONNECTION_ERROR)
+    private void ResetConnection(String instruction){
+        holder = new ComHolder(this);
+        CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage, this);
+        CustomErrorMenuView errorMenuView = new CustomErrorMenuView(stage, customMainMenuScene, "Error: The connection is lost");
+        errorMenuView.switchToView();
     }
     //endregion
 

@@ -72,7 +72,7 @@ public class MainMenuUnit implements CanvasDrawer {
 
         graphics2D.setColor(Color.white);
         graphics2D.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, (int)(60 * screenSize[0])));
-        graphics2D.drawString("Kies een land voor je ruimteprogramma: ", (int) (470 * screenSize[0]), (int)(80 * screenSize[1]));
+        graphics2D.drawString("Choose a country for your space program: ", (int) (460 * screenSize[0]), (int)(80 * screenSize[1]));
         graphics2D.fill(backgroundTitle);
 
         graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.025f));

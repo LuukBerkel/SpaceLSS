@@ -1,5 +1,8 @@
 package Client.Coms;
 
+import Client.Logic.GameController;
+import Shared.CommunicationLibrary;
+
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
@@ -10,16 +13,18 @@ public class ComSending {
 
     private Queue<String> sendQueue = new PriorityQueue<>();
 
-    public ComSending(DataOutputStream output) {
+    public ComSending(DataOutputStream output, GameController controller) {
         new Thread(() -> {
-            while (true){
+            boolean running = true;
+            while (running){
                 synchronized (sendQueue) {
                     if (!sendQueue.isEmpty()) {
                         try {
                             output.writeUTF(sendQueue.poll());
                         } catch (IOException e) {
-                            //TODO add saver
+                            controller.instructionHandler(CommunicationLibrary.GAME_CONNECTION_ERROR);
                             e.printStackTrace();
+                            running = false;
                         }
                     }
                 }
