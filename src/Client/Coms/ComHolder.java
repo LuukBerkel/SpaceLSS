@@ -40,7 +40,6 @@ public class ComHolder {
     public boolean Init(int subnet){
         ThreadPoolExecutor executor =  (ThreadPoolExecutor) Executors.newCachedThreadPool();
         for (int i = 0; i <= subnet; i++) {
-            System.out.println("@Server trying to connect: " + SERVER_IP_ADDRESS + i);
             int mask = i;
            executor.execute( new Thread(() -> {
                 try {
@@ -50,6 +49,7 @@ public class ComHolder {
                     receiving = new ComReceiving(controller, new DataInputStream(socket.getInputStream()));
                     sending = new ComSending(new DataOutputStream(socket.getOutputStream()), controller);
                     done = true;
+                    System.out.println("@Server trying to connect: " + SERVER_IP_ADDRESS + mask);
                 } catch (IOException ignored) {
                 }
             }));
