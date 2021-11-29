@@ -49,7 +49,8 @@ public class ConnectionHandler
     //region Incoming
     public void startConnection(){
         new Thread(() -> {
-            while (true) {
+            boolean running = true;
+            while (running) {
                 try {
                     String message= input.readUTF();
                     for (Method e: reflections.getMethodsAnnotatedWith(MethodJumper.class)) {
@@ -63,6 +64,8 @@ public class ConnectionHandler
                 } catch (IOException | InvocationTargetException | IllegalAccessException e) {
                     e.printStackTrace();
                     session.KillSession();
+                    this.KillConnection();
+                    running = false;
                 }
             }
         }).start();
@@ -90,7 +93,9 @@ public class ConnectionHandler
             this.output.writeUTF(message);
         } catch (IOException e) {
             e.printStackTrace();
+            if (!message.equals(CommunicationLibrary.GAME_CONNECTION_ERROR))
             session.KillSession();
+            this.KillConnection();
         }
     }
     //endregion
@@ -112,7 +117,4 @@ public class ConnectionHandler
             e.printStackTrace();
         }
     }
-
-
-
 }

@@ -9,7 +9,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -51,8 +50,7 @@ public class ComHolder {
                     receiving = new ComReceiving(controller, new DataInputStream(socket.getInputStream()));
                     sending = new ComSending(new DataOutputStream(socket.getOutputStream()), controller);
                     done = true;
-                } catch (IOException e) {
-
+                } catch (IOException ignored) {
                 }
             }));
         }

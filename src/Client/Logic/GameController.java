@@ -31,6 +31,10 @@ public class GameController {
     private Reflections reflections;
 
     public GameController(Stage stage) throws IOException {
+        stage.setOnCloseRequest(event -> {
+            System.exit(0);
+        });
+
         this.stage = stage;
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         targetSize = new double[]{size.width / 1920.0, size.height /1080.0 };

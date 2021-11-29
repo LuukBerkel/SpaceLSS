@@ -1,6 +1,7 @@
 package Server.Logic;
 
 import Server.Coms.ConnectionHandler;
+import Shared.CommunicationLibrary;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,8 +25,9 @@ public class SessionHandler {
     }
 
     public void KillSession(){
+        System.out.println("Killing session");
         for (ConnectionHandler handler: sessionPlayers) {
-            handler.KillConnection();
+            handler.connectionSendBack(CommunicationLibrary.GAME_CONNECTION_ERROR);
         }
     }
 }
