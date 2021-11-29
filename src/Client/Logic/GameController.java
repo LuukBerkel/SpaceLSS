@@ -39,8 +39,9 @@ public class GameController {
         this.stage = stage;
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         targetSize = new double[]{size.width / 1920.0, size.height /1080.0 };
-        holder = new ComHolder(this);
+
         this.reflections = new Reflections(GameController.class, new MethodAnnotationsScanner());
+        holder = new ComHolder(this);
     }
 
     public void startupRoutine() {

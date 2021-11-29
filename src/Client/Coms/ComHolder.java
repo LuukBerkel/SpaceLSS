@@ -1,6 +1,7 @@
 package Client.Coms;
 
 import Client.Logic.GameController;
+import Shared.CommunicationLibrary;
 import javafx.scene.control.Alert;
 
 
@@ -12,6 +13,7 @@ import java.net.Socket;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class ComHolder {
     private static final String SERVER_IP_ADDRESS = "192.168.1.";
@@ -46,20 +48,29 @@ public class ComHolder {
                     Socket socket = new Socket();
                     socket.connect(new InetSocketAddress(SERVER_IP_ADDRESS + mask, SERVER_PORT), 800);
 
-                    receiving = new ComReceiving(controller, new DataInputStream(socket.getInputStream()));
+                    DataInputStream stream =new DataInputStream(socket.getInputStream());
+
+                    if (!stream.readUTF().equals(CommunicationLibrary.GAME_VERIFY_SERVER)) throw new IOException();
+
+                    receiving = new ComReceiving(controller, stream);
                     sending = new ComSending(new DataOutputStream(socket.getOutputStream()), controller);
                     done = true;
-                    System.out.println("@Server trying to connect: " + SERVER_IP_ADDRESS + mask);
+                   // System.out.println("@Server trying to connect: " + SERVER_IP_ADDRESS + mask);
                 } catch (IOException ignored) {
+                    //System.out.println("!Server trying to connect: " + SERVER_IP_ADDRESS + mask);
                 }
+               System.out.println("Ended");
             }));
         }
 
+        executor.shutdown();
         try {
-            executor.awaitTermination(1000,  TimeUnit.NANOSECONDS);
+            if (!executor.awaitTermination(5, TimeUnit.SECONDS))
+                System.err.println("Threads didn't finish in 60000 seconds!");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
 
         return done;
     }

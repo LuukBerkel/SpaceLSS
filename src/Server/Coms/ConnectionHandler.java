@@ -50,6 +50,11 @@ public class ConnectionHandler
     public void startConnection(){
         new Thread(() -> {
             boolean running = true;
+            try {
+                output.writeUTF(CommunicationLibrary.GAME_VERIFY_SERVER);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             while (running) {
                 try {
                     String message= input.readUTF();

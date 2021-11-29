@@ -11,6 +11,7 @@ import java.net.Socket;
 public class ComReceiving {
 
     public ComReceiving(GameController controller, DataInputStream input){
+
         new Thread(() -> {
             boolean running = true;
             while (running) {
