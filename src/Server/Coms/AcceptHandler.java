@@ -28,11 +28,13 @@ public class AcceptHandler
 
            //Looping through requests
            while (true){
+               Socket s = this.serverSocket.accept();
                ConnectionHandler handler = new
-                       ConnectionHandler(this.serverSocket.accept(), sessionsController);
-               System.out.println("new client accepted");
+                       ConnectionHandler(s, sessionsController);
                activeConnections.add(handler);
                handler.startConnection();
+
+               System.out.println("@Server accepted: " + this.serverSocket.getInetAddress());
            }
        } catch (Exception e){
            e.printStackTrace();

@@ -34,4 +34,8 @@ public class SessionsController {
             }
         }
     }
+
+    public void killQueing(){
+
+    }
 }

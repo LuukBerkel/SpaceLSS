@@ -62,8 +62,9 @@ public class ConnectionHandler
                         if (e.getAnnotation(MethodJumper.class).command().contains(message)){
 
                             e.invoke(this, message);
+                            System.out.println("@Server request: "   + e.getName());
                         }
-                        System.out.println(e.getName());
+
                     }
 
                 } catch (IOException | InvocationTargetException | IllegalAccessException e) {
@@ -121,5 +122,6 @@ public class ConnectionHandler
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("@Server client termination");
     }
 }

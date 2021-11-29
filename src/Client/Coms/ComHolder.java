@@ -55,18 +55,15 @@ public class ComHolder {
                     receiving = new ComReceiving(controller, stream);
                     sending = new ComSending(new DataOutputStream(socket.getOutputStream()), controller);
                     done = true;
-                   // System.out.println("@Server trying to connect: " + SERVER_IP_ADDRESS + mask);
                 } catch (IOException ignored) {
-                    //System.out.println("!Server trying to connect: " + SERVER_IP_ADDRESS + mask);
                 }
-               System.out.println("Ended");
             }));
         }
 
         executor.shutdown();
         try {
-            if (!executor.awaitTermination(5, TimeUnit.SECONDS))
-                System.err.println("Threads didn't finish in 60000 seconds!");
+            if (!executor.awaitTermination(20, TimeUnit.SECONDS))
+                System.out.println("@Error connection");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
