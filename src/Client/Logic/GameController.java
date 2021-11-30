@@ -25,6 +25,8 @@ import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GameController {
 
@@ -48,21 +50,36 @@ public class GameController {
     }
 
     public void startupRoutine() {
-       /*CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage, this);
+      /* CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage, this);
         CustomSpashScreenView standardCanvasScene = new CustomSpashScreenView(stage, customMainMenuScene);*/
 
-        StandardCanvasView view = new StandardCanvasView(stage, new DualChoiceUnit("spaggeti", "/images/us.png",
-                "spaggeti", "/images/us.png"
-                ,"/images/dragon.jpg", "wat is hellerkste"));
+        ArrayList<String> assets = new ArrayList<>();
+        for (int i = 0; i < 2; i++) {
+            assets.add(CommunicationLibrary.GAME_REQUEST_USA);
+            assets.add("/images/ussr.png");
+        }
+        assets.add("/images/soyuz.jpg");
+        assets.add("Which of these country is the best?");
 
+        HashMap<String, Integer> scores = new HashMap<>();
+        scores.put(CommunicationLibrary.GAME_SUCCESSES_USA, 0);
+        scores.put(CommunicationLibrary.GAME_SUCCESSES_USSR, 0);
+        scores.put(CommunicationLibrary.GAME_KILLED_USA, 69);
+        scores.put(CommunicationLibrary.GAME_KILLED_USSR, 268);
+        scores.put(CommunicationLibrary.GAME_WASTED_USA, 100000);
+        scores.put(CommunicationLibrary.GAME_WASTED_USSR,100000);
+
+
+
+        StandardCanvasView view = new StandardCanvasView(stage, new DualChoiceUnit(assets, scores));
 
         //Setup Scene
         this.stage.setFullScreen(true);
         this.stage.setScene(new Scene(new BorderPane()));
         this.stage.show();
 
-
         view.switchToView();
+
        //standardCanvasScene.switchToView();
     }
     //endregion

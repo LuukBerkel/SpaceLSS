@@ -12,12 +12,11 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 public class DualChoiceUnit implements CanvasDrawer {
+
     //Variables
     private BufferedImage aFlag;
     private BufferedImage bFlag;
@@ -28,36 +27,42 @@ public class DualChoiceUnit implements CanvasDrawer {
     private final RoundRectangle2D aButton;
     private final RoundRectangle2D bButton;
     private final Rectangle2D lineTitle;
+    private final RoundRectangle2D scoresPlain;
     private final String question;
 
     private final HashMap<RoundRectangle2D, String> buttonMap= new
             HashMap<>();
+    private final HashMap<String, Integer> scoreMap;
 
-
-    public DualChoiceUnit(String optionAContext, String optionAImage,String optionBContext, String optionBImage, String background, String question) {
+    public DualChoiceUnit(ArrayList<String> data , HashMap<String, Integer> scores) {
+        //Setting variables
         this.screenSize = GameController.targetSize;
-        this.question =question;
+        this.scoreMap = scores;
+
+        //Reading list...
+        this.question = data.get(data.size()-1);
 
         //Parsing assets scene
         try {
             this.aFlag = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource(optionAImage))), screenSize[0]/2.5, screenSize[1]/2.5);
+                    .getResource(data.get(1)))), screenSize[0]/2.5, screenSize[1]/2.5);
             this.bFlag = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource(optionBImage))), screenSize[0]/2.5, screenSize[1]/2.5);
+                    .getResource(data.get(3)))), screenSize[0]/2.5, screenSize[1]/2.5);
             this.background= Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource(background))), screenSize[0], screenSize[1]);
+                    .getResource(data.get(4)))), screenSize[0], screenSize[1]);
         }catch (Exception e){
             e.printStackTrace();
         }
 
         //Buttons
-        aButton = new RoundRectangle2D.Double(450 * screenSize[0], 135 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
-        bButton = new RoundRectangle2D.Double(1050 * screenSize[0], 135 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
-        lineTitle = new Rectangle2D.Double(400 * screenSize[0], 105 * screenSize[1], 1180 * screenSize[0], 10 * screenSize[1]);
+        aButton = new RoundRectangle2D.Double(110 * screenSize[0], 135 * screenSize[1], 800 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
+        bButton = new RoundRectangle2D.Double(1010 * screenSize[0], 135 * screenSize[1], 800 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
+        lineTitle = new Rectangle2D.Double(110 * screenSize[0], 105 * screenSize[1], 1700 * screenSize[0], 10 * screenSize[1]);
+        scoresPlain = new RoundRectangle2D.Double(1470 * screenSize[0], 10 * screenSize[1], 350 * screenSize[0], 80 * screenSize[1], 40 *screenSize[0], 40 * screenSize[1]);
 
         //Actions
-        buttonMap.put(aButton, optionAContext);
-        buttonMap.put(bButton, optionBContext);
+        buttonMap.put(aButton, data.get(0));
+        buttonMap.put(bButton, data.get(2));
     }
 
     @Override
@@ -68,9 +73,26 @@ public class DualChoiceUnit implements CanvasDrawer {
         graphics2D.drawImage(background, 0,0 , null);
         graphics2D.setColor(Color.white);
         graphics2D.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, (int)(60 * screenSize[0])));
-        graphics2D.drawString(question, (int) (400 * screenSize[0]), (int)(80 * screenSize[1]));
+        graphics2D.drawString(question, (int) (100 * screenSize[0]), (int)(80 * screenSize[1]));
         graphics2D.setColor(Color.white);
         graphics2D.fill(lineTitle);
+
+        graphics2D.setColor(new Color(0.5f, 0.5f,0.5f, 0.75f));
+        graphics2D.fill(scoresPlain);
+
+        graphics2D.setColor(Color.white);
+        graphics2D.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, (int)(20 * screenSize[0])));
+        graphics2D.drawString("USA: " + scoreMap.get(CommunicationLibrary.GAME_SUCCESSES_USA) + " \uD83D\uDC4D , " +
+                        scoreMap.get(CommunicationLibrary.GAME_KILLED_USA) + " \uD83D\uDC80, $  " +  scoreMap.get(CommunicationLibrary.GAME_WASTED_USA) + " \uD83D\uDCB8"
+
+                , (int) (1496 * screenSize[0]), (int)(50 * screenSize[1]));
+
+
+        graphics2D.drawString("USSR: " +
+                        scoreMap.get(CommunicationLibrary.GAME_SUCCESSES_USSR) + " \uD83D\uDC4D, " +
+                        scoreMap.get(CommunicationLibrary.GAME_KILLED_USSR) + " \uD83D\uDC80, $ " +  scoreMap.get(CommunicationLibrary.GAME_WASTED_USSR) + " \uD83D\uDCB8"
+
+                , (int) (1496 * screenSize[0]), (int)(80 * screenSize[1]));
 
         graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC, 0.85f));
 
