@@ -3,7 +3,9 @@ package Client.Logic;
 import Client.Coms.ComHolder;
 import Client.Scene.Canvas.Customized.MainMenuUnit;
 import Client.Scene.Canvas.Customized.SplashScreenUnit;
+import Client.Scene.Canvas.Standardized.DualChoiceUnit;
 import Client.Scene.Canvas.Standardized.QuadChoiceUnit;
+import Client.Scene.Canvas.Standardized.TripleChoiceUnit;
 import Client.Scene.Canvas.Standardized.WaiterUnit;
 import Client.Scene.JavaFX.Customized.CustomErrorMenuView;
 import Client.Scene.JavaFX.Customized.CustomMainMenuView;
@@ -46,10 +48,12 @@ public class GameController {
     }
 
     public void startupRoutine() {
-       CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage, this);
-        CustomSpashScreenView standardCanvasScene = new CustomSpashScreenView(stage, customMainMenuScene);
+       /*CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage, this);
+        CustomSpashScreenView standardCanvasScene = new CustomSpashScreenView(stage, customMainMenuScene);*/
 
-        //StandardCanvasView view = new StandardCanvasView(stage, new QuadChoiceUnit("spaggeti", "/images/us.png","spaggeti", "/images/us.png", "spaggeti", "/images/us.png", "spaggeti", "/images/us.png","/images/dragon.jpg", "wat is hellerkste"));
+        StandardCanvasView view = new StandardCanvasView(stage, new DualChoiceUnit("spaggeti", "/images/us.png",
+                "spaggeti", "/images/us.png"
+                ,"/images/dragon.jpg", "wat is hellerkste"));
 
 
         //Setup Scene
@@ -58,8 +62,8 @@ public class GameController {
         this.stage.show();
 
 
-        //view.switchToView();
-       standardCanvasScene.switchToView();
+        view.switchToView();
+       //standardCanvasScene.switchToView();
     }
     //endregion
 

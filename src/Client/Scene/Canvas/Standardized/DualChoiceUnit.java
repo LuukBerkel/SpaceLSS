@@ -51,9 +51,9 @@ public class DualChoiceUnit implements CanvasDrawer {
         }
 
         //Buttons
-        aButton = new RoundRectangle2D.Double(470 * screenSize[0], 135 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
-        bButton = new RoundRectangle2D.Double(1030 * screenSize[0], 135 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
-        lineTitle = new Rectangle2D.Double(230 * screenSize[0], 105 * screenSize[1], 1520 * screenSize[0], 10 * screenSize[1]);
+        aButton = new RoundRectangle2D.Double(450 * screenSize[0], 135 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
+        bButton = new RoundRectangle2D.Double(1050 * screenSize[0], 135 * screenSize[1], 480 * screenSize[0], 912 * screenSize[1], 100 *screenSize[0], 100 * screenSize[1]);
+        lineTitle = new Rectangle2D.Double(400 * screenSize[0], 105 * screenSize[1], 1180 * screenSize[0], 10 * screenSize[1]);
 
         //Actions
         buttonMap.put(aButton, optionAContext);
@@ -63,17 +63,17 @@ public class DualChoiceUnit implements CanvasDrawer {
     @Override
     public void draw(FXGraphics2D graphics2D) {
 
-        graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
-        graphics2D.drawImage(background, 0,0 , null);
+        graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC, 1f));
 
+        graphics2D.drawImage(background, 0,0 , null);
         graphics2D.setColor(Color.white);
         graphics2D.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, (int)(60 * screenSize[0])));
-        graphics2D.drawString(question, (int) (64 * screenSize[0]), (int)(80 * screenSize[1]));
+        graphics2D.drawString(question, (int) (400 * screenSize[0]), (int)(80 * screenSize[1]));
+        graphics2D.setColor(Color.white);
         graphics2D.fill(lineTitle);
 
-        graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.75f));
+        graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC, 0.85f));
 
-        graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.025f));
         graphics2D.setPaint(new TexturePaint(aFlag, new Rectangle2D.Double(aButton.getX(), aButton.getY(), aButton.getWidth(), aButton.getHeight())));
         graphics2D.fill(aButton);
 
