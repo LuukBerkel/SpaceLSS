@@ -2,6 +2,7 @@ package Client.Coms;
 
 import Client.Logic.GameController;
 import Shared.CommunicationLibrary;
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 
 
@@ -26,16 +27,31 @@ public class ComHolder {
 
 
 
-    public ComHolder(GameController controller) {
+    public ComHolder(GameController controller, boolean bootup) {
         this.controller = controller;
         if (!Init(255)){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error message");
-            alert.setHeaderText("The server is offline");
-            alert.setContentText("Please turn on the server or change the IP-address");
+           if (bootup){
+               Alert alert = new Alert(Alert.AlertType.ERROR);
+               alert.setTitle("Error message");
+               alert.setHeaderText("The server is offline");
+               alert.setContentText("Please turn on the server or change the IP-address");
 
-            alert.showAndWait();
-            System.exit(0);
+               alert.showAndWait();
+               System.exit(0);
+           } else {
+               Platform.runLater(new Runnable() {
+                   @Override
+                   public void run() {
+                       Alert alert = new Alert(Alert.AlertType.ERROR);
+                       alert.setTitle("Error message");
+                       alert.setHeaderText("The server is offline");
+                       alert.setContentText("Please turn on the server or change the IP-address");
+
+                       alert.showAndWait();
+                       System.exit(0);
+                   }
+               });
+           }
         }
     }
 
@@ -75,6 +91,5 @@ public class ComHolder {
     public void sendInstruction(String instruction){
         sending.addInstructionToQueue(instruction);
     }
-
 
 }

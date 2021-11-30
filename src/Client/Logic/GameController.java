@@ -42,15 +42,14 @@ public class GameController {
         targetSize = new double[]{size.width / 1920.0, size.height /1080.0 };
 
         this.reflections = new Reflections(GameController.class, new MethodAnnotationsScanner());
-        holder = new ComHolder(this);
+        holder = new ComHolder(this, true);
     }
 
     public void startupRoutine() {
-       /* CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage, this);
-        CustomSpashScreenView standardCanvasScene = new CustomSpashScreenView(stage, customMainMenuScene);*/
+       CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage, this);
+        CustomSpashScreenView standardCanvasScene = new CustomSpashScreenView(stage, customMainMenuScene);
 
-
-        StandardCanvasView view = new StandardCanvasView(stage, new QuadChoiceUnit("spaggeti", "/images/us.png","spaggeti", "/images/us.png", "spaggeti", "/images/us.png", "spaggeti", "/images/us.png","/images/dragon.jpg", "wat is hellerkste"));
+        //StandardCanvasView view = new StandardCanvasView(stage, new QuadChoiceUnit("spaggeti", "/images/us.png","spaggeti", "/images/us.png", "spaggeti", "/images/us.png", "spaggeti", "/images/us.png","/images/dragon.jpg", "wat is hellerkste"));
 
 
         //Setup Scene
@@ -59,8 +58,8 @@ public class GameController {
         this.stage.show();
 
 
-        view.switchToView();
-/*        standardCanvasScene.switchToView();*/
+        //view.switchToView();
+       standardCanvasScene.switchToView();
     }
     //endregion
 
@@ -68,24 +67,13 @@ public class GameController {
     public void instructionHandler(String instruction){
         System.out.println(instruction);
         for (Method e: reflections.getMethodsAnnotatedWith(MethodJumper.class)) {
-            System.out.println(e.getName());
             if (e.getAnnotation(MethodJumper.class).command().contains(instruction)){
-
-                Platform.runLater(new Runnable(){
-                    @Override
-                    public void run()
-                    {
-                        try
-                        {
-                            e.invoke(this, instruction);
-                        }
-                        catch (IllegalAccessException | InvocationTargetException illegalAccessException)
-                        {
-                            illegalAccessException.printStackTrace();
-                        }
-                    }
-
-                });
+                try {
+                    e.invoke(this, instruction);
+                }
+                catch (IllegalAccessException | InvocationTargetException illegalAccessException) {
+                    illegalAccessException.printStackTrace();
+                }
             }
         }
     }
@@ -123,7 +111,7 @@ public class GameController {
 
     @MethodJumper(command = CommunicationLibrary.GAME_CONNECTION_ERROR)
     private void ResetConnection(String instruction){
-        holder = new ComHolder(this);
+        holder = new ComHolder(this,false);
         CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage, this);
         CustomErrorMenuView errorMenuView = new CustomErrorMenuView(stage, customMainMenuScene, "Error: The connection is lost");
         errorMenuView.switchToView();
