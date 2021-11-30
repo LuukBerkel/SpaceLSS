@@ -17,12 +17,15 @@ public class StandardVideoView extends AbstractView {
 
     //region Constructor and Standards
     private AbstractView nextInline;
+    //region VideoScene
+    private String mediaPath;
+    private MediaPlayer mediaPlayer;
 
     public StandardVideoView(Stage stage, String videoPath, AbstractView nextInline) {
         super(stage);
-        giveOwnerView(setupsView());
         this.mediaPath= videoPath;
         this.nextInline = nextInline;
+        giveOwnerView(setupsView());
     }
     @Override
     public void deactivateView() {
@@ -35,13 +38,12 @@ public class StandardVideoView extends AbstractView {
     }
     //endregion
 
-    //region VideoScene
-    private String mediaPath;
-    private MediaPlayer mediaPlayer;
+
 
     @Override
     public Pane setupsView() {
         //Media file
+        System.out.println(mediaPath);
         File mediaFile = new File(mediaPath);
 
         //Trying to parse media

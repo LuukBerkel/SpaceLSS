@@ -14,6 +14,8 @@ public class CommunicationLibrary {
     public final static String GAME_WASTED_USSR = "@Score: Wasted USSR";
     public final static String GAME_KILLED_USA = "@Score: Killed USA";
     public final static String GAME_KILLED_USSR = "@Score: Killed USSR";
+    public final static String GAME_BOOT_USA = "@Score: BOOT USA";
+    public final static String GAME_BOOT_USSR = "@Score:  BOOT USSR";
 
    /* public static String
     public static String

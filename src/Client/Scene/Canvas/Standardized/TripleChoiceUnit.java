@@ -51,11 +51,11 @@ public class TripleChoiceUnit implements CanvasDrawer {
         //Parsing assets scene
         try {
             this.aFlag = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource(data.get(1)))), screenSize[0]/2.5, screenSize[1]/2.5);
+                    .getResource(data.get(1)))), screenSize[0], screenSize[1]);
             this.bFlag = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource(data.get(3)))), screenSize[0]/2.5, screenSize[1]/2.5);
+                    .getResource(data.get(3)))), screenSize[0], screenSize[1]);
             this.cFlag = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource(data.get(5)))), screenSize[0]/2.5, screenSize[1]/2.5);
+                    .getResource(data.get(5)))), screenSize[0], screenSize[1]);
             this.background= Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
                     .getResource(data.get(6)))), screenSize[0], screenSize[1]);
         }catch (Exception e){
@@ -104,7 +104,7 @@ public class TripleChoiceUnit implements CanvasDrawer {
 
                 , (int) (1290 * screenSize[0]), (int)(80 * screenSize[1]));
 
-        graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC, 0.85f));
+        graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC, 0.9f));
 
         graphics2D.setPaint(new TexturePaint(aFlag, new Rectangle2D.Double(aButton.getX(), aButton.getY(), aButton.getWidth(), aButton.getHeight())));
         graphics2D.fill(aButton);

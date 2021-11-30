@@ -1,19 +1,16 @@
 package Client.Logic;
 
 import Client.Coms.ComHolder;
-import Client.Scene.Canvas.Customized.MainMenuUnit;
-import Client.Scene.Canvas.Customized.SplashScreenUnit;
-import Client.Scene.Canvas.Standardized.DualChoiceUnit;
-import Client.Scene.Canvas.Standardized.QuadChoiceUnit;
 import Client.Scene.Canvas.Standardized.TripleChoiceUnit;
 import Client.Scene.Canvas.Standardized.WaiterUnit;
 import Client.Scene.JavaFX.Customized.CustomErrorMenuView;
 import Client.Scene.JavaFX.Customized.CustomMainMenuView;
 import Client.Scene.JavaFX.Customized.CustomSpashScreenView;
 import Client.Scene.JavaFX.Standardized.StandardCanvasView;
+import Client.Scene.JavaFX.Standardized.StandardVideoView;
+import Client.Scene.Music.MusicHandler;
 import Shared.CommunicationLibrary;
 import Shared.MethodJumper;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -21,7 +18,6 @@ import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -50,37 +46,21 @@ public class GameController {
     }
 
     public void startupRoutine() {
-      /* CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage, this);
-        CustomSpashScreenView standardCanvasScene = new CustomSpashScreenView(stage, customMainMenuScene);*/
-
-        ArrayList<String> assets = new ArrayList<>();
-        for (int i = 0; i < 2; i++) {
-            assets.add(CommunicationLibrary.GAME_REQUEST_USA);
-            assets.add("/images/ussr.png");
-        }
-        assets.add("/images/soyuz.jpg");
-        assets.add("Which of these country is the best?");
-
-        HashMap<String, Integer> scores = new HashMap<>();
-        scores.put(CommunicationLibrary.GAME_SUCCESSES_USA, 0);
-        scores.put(CommunicationLibrary.GAME_SUCCESSES_USSR, 0);
-        scores.put(CommunicationLibrary.GAME_KILLED_USA, 69);
-        scores.put(CommunicationLibrary.GAME_KILLED_USSR, 268);
-        scores.put(CommunicationLibrary.GAME_WASTED_USA, 100000);
-        scores.put(CommunicationLibrary.GAME_WASTED_USSR,100000);
+      CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage, this);
+        CustomSpashScreenView standardCanvasScene = new CustomSpashScreenView(stage, customMainMenuScene);
 
 
 
-        StandardCanvasView view = new StandardCanvasView(stage, new DualChoiceUnit(assets, scores));
+        //StandardCanvasView view = new StandardCanvasView(stage, new DualChoiceUnit(assets, scores));
 
         //Setup Scene
         this.stage.setFullScreen(true);
         this.stage.setScene(new Scene(new BorderPane()));
         this.stage.show();
 
-        view.switchToView();
+        /*view.switchToView();*/
 
-       //standardCanvasScene.switchToView();
+       standardCanvasScene.switchToView();
     }
     //endregion
 
@@ -137,6 +117,66 @@ public class GameController {
         CustomErrorMenuView errorMenuView = new CustomErrorMenuView(stage, customMainMenuScene, "Error: The connection is lost");
         errorMenuView.switchToView();
     }
+
+    @MethodJumper(command = CommunicationLibrary.GAME_BOOT_USA)
+    private void MainMenuReceiveUS(String instruction){
+        MusicHandler.stopTrack();
+        ArrayList<String> assets = new ArrayList<>();
+        assets.add("");
+        assets.add("/images/evenaar.png");
+        assets.add("");
+        assets.add("/images/pole.png");
+        assets.add("");
+        assets.add("/images/mediaan.png");
+
+        assets.add("/images/backgroundlaunchpad.jpg");
+        assets.add("Which launch-site point?");
+
+        HashMap<String, Integer> scores = new HashMap<>();
+        scores.put(CommunicationLibrary.GAME_SUCCESSES_USA, 0);
+        scores.put(CommunicationLibrary.GAME_SUCCESSES_USSR, 0);
+        scores.put(CommunicationLibrary.GAME_KILLED_USA, 0);
+        scores.put(CommunicationLibrary.GAME_KILLED_USSR, 0);
+        scores.put(CommunicationLibrary.GAME_WASTED_USA, 0);
+        scores.put(CommunicationLibrary.GAME_WASTED_USSR,0);
+
+        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores));
+        StandardVideoView questionVid = new StandardVideoView(stage, "media/Spaceport.mp4", canvas);
+        StandardVideoView bootupVid = new StandardVideoView(stage, "media/USAVidintro.mp4", questionVid);
+
+        bootupVid.switchToView();
+    }
+
+    @MethodJumper(command = CommunicationLibrary.GAME_BOOT_USSR)
+    private void MainMenuReceiveUSSR(String instruction){
+        MusicHandler.stopTrack();
+        ArrayList<String> assets = new ArrayList<>();
+        assets.add("");
+        assets.add("/images/evenaar.png");
+        assets.add("");
+        assets.add("/images/pole.png");
+        assets.add("");
+        assets.add("/images/mediaan.png");
+
+        assets.add("/images/backgroundlaunchpad.jpg");
+        assets.add("Which geographical point is the best for a launch-site");
+
+        HashMap<String, Integer> scores = new HashMap<>();
+        scores.put(CommunicationLibrary.GAME_SUCCESSES_USA, 0);
+        scores.put(CommunicationLibrary.GAME_SUCCESSES_USSR, 0);
+        scores.put(CommunicationLibrary.GAME_KILLED_USA, 0);
+        scores.put(CommunicationLibrary.GAME_KILLED_USSR, 0);
+        scores.put(CommunicationLibrary.GAME_WASTED_USA, 0);
+        scores.put(CommunicationLibrary.GAME_WASTED_USSR,0);
+
+        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores));
+        StandardVideoView questionVid = new StandardVideoView(stage, "media/Spaceport.mp4", canvas);
+        StandardVideoView bootupVid = new StandardVideoView(stage, "media/USSRVidintro.mp4", questionVid);
+
+        bootupVid.switchToView();
+    }
+
+
     //endregion
 
 

@@ -16,6 +16,12 @@ public class SessionHandler {
         this.sessionPlayers = new ArrayList<>();
         this.sessionPlayers.add(playerOne);
         this.sessionPlayers.add(playerTwo);
+
+        for (ConnectionHandler handler: sessionPlayers) {
+            if (handler.type == SessionPlayerType.USA)
+            handler.connectionSendBack(CommunicationLibrary.GAME_BOOT_USA);
+            else handler.connectionSendBack(CommunicationLibrary.GAME_BOOT_USSR);
+        }
     }
 
     public void GlobalSessionResponse(String message){

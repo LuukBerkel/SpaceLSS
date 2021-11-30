@@ -71,6 +71,7 @@ public class ComHolder {
                     receiving = new ComReceiving(controller, stream);
                     sending = new ComSending(new DataOutputStream(socket.getOutputStream()), controller);
                     done = true;
+
                 } catch (IOException ignored) {
                 }
             }));
@@ -78,13 +79,15 @@ public class ComHolder {
 
         executor.shutdown();
         try {
-            if (!executor.awaitTermination(20, TimeUnit.SECONDS))
+            if (!executor.awaitTermination(5, TimeUnit.SECONDS))
                 System.out.println("@Error connection");
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-
+        if (done) {
+            System.out.println("setup");
+        }
         return done;
     }
 
