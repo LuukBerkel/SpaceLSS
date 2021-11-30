@@ -68,9 +68,10 @@ public class ConnectionHandler
                     }
 
                 } catch (IOException | InvocationTargetException | IllegalAccessException e) {
-                    e.printStackTrace();
-                    session.KillSession();
+                    System.out.println("@Server connection lost..");
+                    if (session != null)session.KillSession();
                     this.KillConnection();
+                    controller.killQueing(this);
                     running = false;
                 }
             }
@@ -98,9 +99,10 @@ public class ConnectionHandler
         try {
             this.output.writeUTF(message);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("@Server connection lost..");
             if (!message.equals(CommunicationLibrary.GAME_CONNECTION_ERROR))
             session.KillSession();
+            controller.killQueing(this);
             this.KillConnection();
         }
     }

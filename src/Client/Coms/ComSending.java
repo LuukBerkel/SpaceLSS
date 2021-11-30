@@ -23,7 +23,6 @@ public class ComSending {
                             output.writeUTF(sendQueue.poll());
                         } catch (IOException e) {
                             controller.instructionHandler(CommunicationLibrary.GAME_CONNECTION_ERROR);
-                            e.printStackTrace();
                             running = false;
                         }
                     }

@@ -19,7 +19,6 @@ public class ComReceiving {
                     String message = input.readUTF();
                     controller.instructionHandler(message);
                 } catch (IOException e) {
-                    e.printStackTrace();
                     controller.instructionHandler(CommunicationLibrary.GAME_CONNECTION_ERROR);
                     running = false;
                 }

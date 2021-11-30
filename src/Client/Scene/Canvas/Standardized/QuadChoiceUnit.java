@@ -82,7 +82,7 @@ public class QuadChoiceUnit implements CanvasDrawer {
         graphics2D.setColor(Color.white);
         graphics2D.fill(lineTitle);
 
-        graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC, 0.75f));
+        graphics2D.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC, 0.85f));
         graphics2D.setPaint(new TexturePaint(aFlag, new Rectangle2D.Double(aButton.getX() -  (0 *screenSize[0] ), aButton.getY(), aButton.getWidth(), aButton.getHeight())));
         graphics2D.fill(aButton);
 

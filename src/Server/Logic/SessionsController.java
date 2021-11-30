@@ -35,7 +35,7 @@ public class SessionsController {
         }
     }
 
-    public void killQueing(){
-
+    public void killQueing(ConnectionHandler handler){
+        readyToSession.remove(handler);
     }
 }

@@ -11,6 +11,7 @@ import Client.Scene.JavaFX.Customized.CustomSpashScreenView;
 import Client.Scene.JavaFX.Standardized.StandardCanvasView;
 import Shared.CommunicationLibrary;
 import Shared.MethodJumper;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -65,14 +66,26 @@ public class GameController {
 
     //region Cases
     public void instructionHandler(String instruction){
+        System.out.println(instruction);
         for (Method e: reflections.getMethodsAnnotatedWith(MethodJumper.class)) {
             System.out.println(e.getName());
             if (e.getAnnotation(MethodJumper.class).command().contains(instruction)){
-                try {
-                    e.invoke(this, instruction);
-                } catch (IllegalAccessException | InvocationTargetException illegalAccessException) {
-                    illegalAccessException.printStackTrace();
-                }
+
+                Platform.runLater(new Runnable(){
+                    @Override
+                    public void run()
+                    {
+                        try
+                        {
+                            e.invoke(this, instruction);
+                        }
+                        catch (IllegalAccessException | InvocationTargetException illegalAccessException)
+                        {
+                            illegalAccessException.printStackTrace();
+                        }
+                    }
+
+                });
             }
         }
     }
