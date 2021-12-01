@@ -3,11 +3,8 @@ package Server.Logic;
 import Server.Coms.ConnectionHandler;
 import Shared.CommunicationLibrary;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.logging.Handler;
 
 public class SessionsController {
 
@@ -25,8 +22,8 @@ public class SessionsController {
                     readyToSession.poll().session = sessionHandler;
                 } else{
                     //Sending back failed
-                    handler.connectionSendBack(CommunicationLibrary.GAME_ERROR_ALREADY_CHOSEN);
-                    readyToSession.poll().connectionSendBack(CommunicationLibrary.GAME_ERROR_ALREADY_CHOSEN);
+                    handler.connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_ALREADY_CHOSEN_ERROR);
+                    readyToSession.poll().connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_ALREADY_CHOSEN_ERROR);
                 }
             } else {
                 //Do nothing and await other request...

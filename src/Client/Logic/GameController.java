@@ -46,19 +46,13 @@ public class GameController {
     }
 
     public void startupRoutine() {
-      CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage, this);
+        CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage, this);
         CustomSpashScreenView standardCanvasScene = new CustomSpashScreenView(stage, customMainMenuScene);
-
-
-
-        //StandardCanvasView view = new StandardCanvasView(stage, new DualChoiceUnit(assets, scores));
 
         //Setup Scene
         this.stage.setFullScreen(true);
         this.stage.setScene(new Scene(new BorderPane()));
         this.stage.show();
-
-        /*view.switchToView();*/
 
        standardCanvasScene.switchToView();
     }
@@ -79,105 +73,118 @@ public class GameController {
         }
     }
 
-    @MethodJumper(command = CommunicationLibrary.GAME_REQUEST_USSR)
-    private void MainMenuSendChoiceUSSR(String instruction){
-        StandardCanvasView standardCanvasView = new StandardCanvasView(stage,
-                new WaiterUnit("/images/soyuz.jpg", "Awaiting other player on server"
-                        , "Fun question: What is the name of this space capsule?"));
-        standardCanvasView.switchToView();
-        holder.sendInstruction(CommunicationLibrary.GAME_REQUEST_USSR);
+    //region Internal
+    @MethodJumper(command = CommunicationLibrary.GAME_INTERNAL_QUIT)
+    private void ApplicationQuitGame(String instruction){
+        System.exit(0);
     }
-
-    @MethodJumper(command = CommunicationLibrary.GAME_REQUEST_USA)
-    private void MainMenuSendChoiceUSA(String instruction){
-        StandardCanvasView standardCanvasView = new StandardCanvasView(stage, new WaiterUnit("/images/dragon.jpg"
-                , "Awaiting other player on server"
-                , "Fun question: What is the name of this space capsule?"));
-        standardCanvasView.switchToView();
-        holder.sendInstruction(CommunicationLibrary.GAME_REQUEST_USA);
-    }
-
-    @MethodJumper(command = CommunicationLibrary.GAME_ERROR_ALREADY_CHOSEN)
+    //endregion
+    //region ERROR'S
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_ALREADY_CHOSEN_ERROR)
     private void ErrorAlreadyChosenMain(String instruction){
         CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage, this);
         CustomErrorMenuView errorMenuView = new CustomErrorMenuView(stage, customMainMenuScene, "Error: Two the same country's are chosen");
         errorMenuView.switchToView();
     }
 
-
-    @MethodJumper(command = CommunicationLibrary.GAME_INTERNAL_QUIT)
-    private void ApplicationQuitGame(String instruction){
-        System.exit(0);
-    }
-
-    @MethodJumper(command = CommunicationLibrary.GAME_CONNECTION_ERROR)
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_COM_ERROR)
     private void ResetConnection(String instruction){
         holder = new ComHolder(this,false);
         CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage, this);
         CustomErrorMenuView errorMenuView = new CustomErrorMenuView(stage, customMainMenuScene, "Error: The connection is lost");
         errorMenuView.switchToView();
     }
+    //endregion
 
-    @MethodJumper(command = CommunicationLibrary.GAME_BOOT_USA)
-    private void MainMenuReceiveUS(String instruction){
-        MusicHandler.stopTrack();
-        ArrayList<String> assets = new ArrayList<>();
-        assets.add("");
-        assets.add("/images/evenaar.png");
-        assets.add("");
-        assets.add("/images/pole.png");
-        assets.add("");
-        assets.add("/images/mediaan.png");
-
-        assets.add("/images/backgroundlaunchpad.jpg");
-        assets.add("Which launch-site point?");
-
-        HashMap<String, Integer> scores = new HashMap<>();
-        scores.put(CommunicationLibrary.GAME_SUCCESSES_USA, 0);
-        scores.put(CommunicationLibrary.GAME_SUCCESSES_USSR, 0);
-        scores.put(CommunicationLibrary.GAME_KILLED_USA, 0);
-        scores.put(CommunicationLibrary.GAME_KILLED_USSR, 0);
-        scores.put(CommunicationLibrary.GAME_WASTED_USA, 0);
-        scores.put(CommunicationLibrary.GAME_WASTED_USSR,0);
-
-        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores));
-        StandardVideoView questionVid = new StandardVideoView(stage, "media/Spaceport.mp4", canvas);
-        StandardVideoView bootupVid = new StandardVideoView(stage, "media/USAVidintro.mp4", questionVid);
-
-        bootupVid.switchToView();
+    //region REQUEST'S
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_USSR)
+    private void MainMenuSendChoiceUSSR(String instruction){
+        StandardCanvasView standardCanvasView = new StandardCanvasView(stage,
+                new WaiterUnit("/images/LoadingScreen/soyuz.jpg", "Awaiting other player on server"
+                        , "Fun question: What is the name of this space capsule?"));
+        standardCanvasView.switchToView();
+        holder.sendInstruction(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_USSR);
     }
 
-    @MethodJumper(command = CommunicationLibrary.GAME_BOOT_USSR)
-    private void MainMenuReceiveUSSR(String instruction){
-        MusicHandler.stopTrack();
-        ArrayList<String> assets = new ArrayList<>();
-        assets.add("");
-        assets.add("/images/evenaar.png");
-        assets.add("");
-        assets.add("/images/pole.png");
-        assets.add("");
-        assets.add("/images/mediaan.png");
-
-        assets.add("/images/backgroundlaunchpad.jpg");
-        assets.add("Which geographical point is the best for a launch-site");
-
-        HashMap<String, Integer> scores = new HashMap<>();
-        scores.put(CommunicationLibrary.GAME_SUCCESSES_USA, 0);
-        scores.put(CommunicationLibrary.GAME_SUCCESSES_USSR, 0);
-        scores.put(CommunicationLibrary.GAME_KILLED_USA, 0);
-        scores.put(CommunicationLibrary.GAME_KILLED_USSR, 0);
-        scores.put(CommunicationLibrary.GAME_WASTED_USA, 0);
-        scores.put(CommunicationLibrary.GAME_WASTED_USSR,0);
-
-        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores));
-        StandardVideoView questionVid = new StandardVideoView(stage, "media/Spaceport.mp4", canvas);
-        StandardVideoView bootupVid = new StandardVideoView(stage, "media/USSRVidintro.mp4", questionVid);
-
-        bootupVid.switchToView();
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_USA)
+    private void MainMenuSendChoiceUSA(String instruction){
+        StandardCanvasView standardCanvasView = new StandardCanvasView(stage, new WaiterUnit("/images/LoadingScreen/dragon.jpg"
+                , "Awaiting other player on server"
+                , "Fun question: What is the name of this space capsule?"));
+        standardCanvasView.switchToView();
+        holder.sendInstruction(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_USA);
     }
-
 
     //endregion
 
+    //region RESPONSES
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_BOOT_USA)
+    private void MainMenuReceiveUS(String instruction){
+        //region Settings
+        MusicHandler.stopTrack();
+        ArrayList<String> assets = new ArrayList<>();
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_EQUATOR);
+        assets.add("/images/1st Question/evenaar.png");
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_POLE);
+        assets.add("/images/1st Question/pole.png");
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FIRST_PARALLEL);
+        assets.add("/images/1st Question/mediaan.png");
+
+        assets.add("/images/1st Question/backgroundlaunchpad.jpg");
+        assets.add("Which launch-site point?");
+
+        HashMap<String, Integer> scores = new HashMap<>();
+        scores.put(CommunicationLibrary.KEYS_SUCCESSES_USA, 0);
+        scores.put(CommunicationLibrary.KEYS_SUCCESSES_USSR, 0);
+        scores.put(CommunicationLibrary.KEYS_KILLED_USA, 0);
+        scores.put(CommunicationLibrary.KEYS_KILLED_USSR, 0);
+        scores.put(CommunicationLibrary.KEYS_WASTED_USA, 0);
+        scores.put(CommunicationLibrary.KEYS_WASTED_USSR,0);
+        //endregion
+
+        //region Scene
+        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores));
+        StandardVideoView questionVid = new StandardVideoView(stage, "media/1st Question/FIRST_QUESTION_VID.mp4", canvas);
+        StandardVideoView bootUpVid = new StandardVideoView(stage, "media/Introduction/USA_INTRO_VID.mp4", questionVid);
+
+        bootUpVid.switchToView();
+        //end region
+    }
+
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_BOOT_USSR)
+    private void MainMenuReceiveUSSR(String instruction){
+        //region Settings
+        MusicHandler.stopTrack();
+        ArrayList<String> assets = new ArrayList<>();
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_EQUATOR);
+        assets.add("/images/1st Question/evenaar.png");
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_POLE);
+        assets.add("/images/1st Question/pole.png");
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FIRST_PARALLEL);
+        assets.add("/images/1st Question/mediaan.png");
+
+        assets.add("/images/1st Question/backgroundlaunchpad.jpg");
+        assets.add("Which launch-site point?");
+
+        HashMap<String, Integer> scores = new HashMap<>();
+        scores.put(CommunicationLibrary.KEYS_SUCCESSES_USA, 0);
+        scores.put(CommunicationLibrary.KEYS_SUCCESSES_USSR, 0);
+        scores.put(CommunicationLibrary.KEYS_KILLED_USA, 0);
+        scores.put(CommunicationLibrary.KEYS_KILLED_USSR, 0);
+        scores.put(CommunicationLibrary.KEYS_WASTED_USA, 0);
+        scores.put(CommunicationLibrary.KEYS_WASTED_USSR,0);
+        //endregion
+
+        //region Scene
+        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores));
+        StandardVideoView questionVid = new StandardVideoView(stage, "media/1st Question/FIRST_QUESTION_VID.mp4", canvas);
+        StandardVideoView bootUpVid = new StandardVideoView(stage, "media/Introduction/USSR_INTRO_VID.mp4", questionVid);
+
+        bootUpVid.switchToView();
+        //end region
+    }
+    //endregion
+
+    //endregion
 
 }

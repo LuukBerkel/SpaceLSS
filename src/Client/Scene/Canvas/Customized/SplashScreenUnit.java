@@ -33,7 +33,7 @@ public class SplashScreenUnit implements CanvasDrawer {
         //Parsing assets scene
         try {
             this.logo = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource("/images/logo.jpg"))),GameController.targetSize[0], GameController.targetSize[1]);
+                    .getResource("/images/Mainmenu/logo.jpg"))),GameController.targetSize[0], GameController.targetSize[1]);
         }catch (Exception e){
             e.printStackTrace();
         }

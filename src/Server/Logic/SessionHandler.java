@@ -4,9 +4,7 @@ import Server.Coms.ConnectionHandler;
 import Shared.CommunicationLibrary;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class SessionHandler {
 
@@ -19,8 +17,8 @@ public class SessionHandler {
 
         for (ConnectionHandler handler: sessionPlayers) {
             if (handler.type == SessionPlayerType.USA)
-            handler.connectionSendBack(CommunicationLibrary.GAME_BOOT_USA);
-            else handler.connectionSendBack(CommunicationLibrary.GAME_BOOT_USSR);
+            handler.connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_USA);
+            else handler.connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_USSR);
         }
     }
 
@@ -33,7 +31,7 @@ public class SessionHandler {
     public void KillSession(){
         System.out.println("Killing session");
         for (ConnectionHandler handler: sessionPlayers) {
-            handler.connectionSendBack(CommunicationLibrary.GAME_CONNECTION_ERROR);
+            handler.connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_COM_ERROR);
         }
     }
 }

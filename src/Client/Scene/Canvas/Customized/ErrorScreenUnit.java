@@ -7,7 +7,6 @@ import org.jfree.fx.FXGraphics2D;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -25,9 +24,9 @@ public class ErrorScreenUnit implements CanvasDrawer {
         //Parsing assets scene
         try {
             this.backgroundImage = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource("/images/explosion.jpg"))), GameController.targetSize[0], GameController.targetSize[1]);
+                    .getResource("/images/ErrorSCreen/explosion.jpg"))), GameController.targetSize[0], GameController.targetSize[1]);
             this.errorImage = Rescaler.rescaler((ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource("/images/error.png")))), GameController.targetSize[0]/1.5, GameController.targetSize[1]/1.5);
+                    .getResource("/images/ErrorSCreen/error.png")))), GameController.targetSize[0]/1.5, GameController.targetSize[1]/1.5);
 
         }catch (Exception e){
             e.printStackTrace();

@@ -59,7 +59,7 @@ public class CustomMainMenuView extends AbstractView  {
 
         //Starting of media
         mediaPlayer.play();
-        MusicHandler.loopTrack("media/music.mp3");
+        MusicHandler.loopTrack("media/Mainmenu/music.mp3");
     }
 
     /**
@@ -141,7 +141,7 @@ public class CustomMainMenuView extends AbstractView  {
 
     //region Media
     private MediaPlayer mediaPlayer;
-    private String videoFileLocation = "media/backgroundvid.mp4";
+    private String videoFileLocation = "media/Mainmenu/MAINMENU_BACKGROUND_VID.mp4";
 
     /**
      * Sets the media up..

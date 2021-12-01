@@ -51,7 +51,7 @@ public class ConnectionHandler
         new Thread(() -> {
             boolean running = true;
             try {
-                output.writeUTF(CommunicationLibrary.GAME_VERIFY_SERVER);
+                output.writeUTF(CommunicationLibrary.COMMUNICATION_VERIFY_SERVER);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -78,13 +78,13 @@ public class ConnectionHandler
         }).start();
     }
 
-    @MethodJumper(command = CommunicationLibrary.GAME_REQUEST_USA)
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_USA)
     public void authenticatedConnectionUSA(String message){
         type = SessionPlayerType.USA;
         controller.SubToSession(this);
     }
 
-    @MethodJumper(command = CommunicationLibrary.GAME_REQUEST_USSR)
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_USSR)
     public void authenticatedConnectionUSSR(String message){
         type = SessionPlayerType.USSR;
         controller.SubToSession(this);
@@ -100,7 +100,7 @@ public class ConnectionHandler
             this.output.writeUTF(message);
         } catch (IOException e) {
             System.out.println("@Server connection lost..");
-            if (!message.equals(CommunicationLibrary.GAME_CONNECTION_ERROR))
+            if (!message.equals(CommunicationLibrary.COMMUNICATION_SESSION_COM_ERROR))
             session.KillSession();
             controller.killQueing(this);
             this.KillConnection();

@@ -5,7 +5,6 @@ import Shared.CommunicationLibrary;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.Socket;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -22,7 +21,7 @@ public class ComSending {
                         try {
                             output.writeUTF(sendQueue.poll());
                         } catch (IOException e) {
-                            controller.instructionHandler(CommunicationLibrary.GAME_CONNECTION_ERROR);
+                            controller.instructionHandler(CommunicationLibrary.COMMUNICATION_SESSION_COM_ERROR);
                             running = false;
                         }
                     }

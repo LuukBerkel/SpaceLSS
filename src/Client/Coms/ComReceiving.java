@@ -3,10 +3,8 @@ package Client.Coms;
 import Client.Logic.GameController;
 import Shared.CommunicationLibrary;
 
-import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.IOException;
-import java.net.Socket;
 
 public class ComReceiving {
 
@@ -19,7 +17,7 @@ public class ComReceiving {
                     String message = input.readUTF();
                     controller.instructionHandler(message);
                 } catch (IOException e) {
-                    controller.instructionHandler(CommunicationLibrary.GAME_CONNECTION_ERROR);
+                    controller.instructionHandler(CommunicationLibrary.COMMUNICATION_SESSION_COM_ERROR);
                     running = false;
                 }
             }

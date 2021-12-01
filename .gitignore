@@ -22,7 +22,7 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
-resources/media/backgroundvid.mp4
+resources/media/Mainmenu/MAINMENU_BACKGROUND_VID.mp4
 
 out/production/SpaceLSS/backgroundvid.mov
 
@@ -30,9 +30,9 @@ out/production/SpaceLSS/backgroundvid.mp4
 
 out/production/SpaceLSS/media/backgroundvid.mp4
 
-resources/media/USAVidintro.mp4
+resources/media/Introduction/USA_INTRO_VID.mp4
 
-resources/media/USSRVidintro.mp4
+resources/media/Introduction/USSR_INTRO_VID.mp4
 
 out/production/SpaceLSS/media/Spaceport.mp4
 
@@ -42,4 +42,4 @@ out/production/SpaceLSS/media/USAVidintro.mp4
 
 out/production/SpaceLSS/media/USSRVidintro.mp4
 
-resources/media/Spaceport.mp4
+resources/media/1st Question/FIRST_QUESTION_VID.mp4

@@ -14,7 +14,6 @@ import java.net.Socket;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class ComHolder {
     private static final String SERVER_IP_ADDRESS = "192.168.1.";
@@ -66,7 +65,7 @@ public class ComHolder {
 
                     DataInputStream stream =new DataInputStream(socket.getInputStream());
 
-                    if (!stream.readUTF().equals(CommunicationLibrary.GAME_VERIFY_SERVER)) throw new IOException();
+                    if (!stream.readUTF().equals(CommunicationLibrary.COMMUNICATION_VERIFY_SERVER)) throw new IOException();
 
                     receiving = new ComReceiving(controller, stream);
                     sending = new ComSending(new DataOutputStream(socket.getOutputStream()), controller);

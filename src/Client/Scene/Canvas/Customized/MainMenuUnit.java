@@ -7,18 +7,12 @@ import Shared.CommunicationLibrary;
 import org.jfree.fx.FXGraphics2D;
 
 import javax.imageio.ImageIO;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -44,11 +38,11 @@ public class MainMenuUnit implements CanvasDrawer {
         //Parsing assets scene
         try {
             this.usFlag = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource("/images/us.png"))), screenSize[0]/2.5, screenSize[1]/2.5);
+                    .getResource("/images/Mainmenu/us.png"))), screenSize[0]/2.5, screenSize[1]/2.5);
             this.ussrFlag = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource("/images/ussr.png"))), screenSize[0]/2.5, screenSize[1]/2.5);
+                    .getResource("/images/Mainmenu/ussr.png"))), screenSize[0]/2.5, screenSize[1]/2.5);
             this.quitFlag = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource("/images/exit.png"))), screenSize[0]/2.5, screenSize[1]/2.5);
+                    .getResource("/images/Mainmenu/exit.png"))), screenSize[0]/2.5, screenSize[1]/2.5);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -60,16 +54,13 @@ public class MainMenuUnit implements CanvasDrawer {
         backgroundTitle = new Rectangle2D.Double(230 * screenSize[0], 105 * screenSize[1], 1520 * screenSize[0], 10 * screenSize[1]);
 
         //Actions
-        buttonMap.put(usButton, CommunicationLibrary.GAME_REQUEST_USA);
-        buttonMap.put(ussrButton, CommunicationLibrary.GAME_REQUEST_USSR);
+        buttonMap.put(usButton, CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_USA);
+        buttonMap.put(ussrButton, CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_USSR);
         buttonMap.put(quitButton, CommunicationLibrary.GAME_INTERNAL_QUIT);
     }
 
     @Override
     public void draw(FXGraphics2D graphics2D) {
-
-
-
         graphics2D.setColor(Color.white);
         graphics2D.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, (int)(60 * screenSize[0])));
         graphics2D.drawString("Choose a country for your space program: ", (int) (460 * screenSize[0]), (int)(80 * screenSize[1]));

@@ -27,7 +27,7 @@ public class WaiterUnit implements CanvasDrawer {
             this.backgroundImage = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
                     .getResource(imagePath))), GameController.targetSize[0], GameController.targetSize[1]);
             this.loadingLogo = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource("/images/loading.png"))), GameController.targetSize[0]/2, GameController.targetSize[1]/2);
+                    .getResource("/images/LoadingScreen/loading.png"))), GameController.targetSize[0]/2, GameController.targetSize[1]/2);
 
         }catch (Exception e){
             e.printStackTrace();

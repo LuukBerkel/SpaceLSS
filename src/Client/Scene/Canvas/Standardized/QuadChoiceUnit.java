@@ -13,7 +13,6 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.*;
-import java.util.List;
 
 public class QuadChoiceUnit implements CanvasDrawer {
 
@@ -93,15 +92,15 @@ public class QuadChoiceUnit implements CanvasDrawer {
 
         graphics2D.setColor(Color.white);
         graphics2D.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, (int)(20 * screenSize[0])));
-        graphics2D.drawString("USA: " + scoreMap.get(CommunicationLibrary.GAME_SUCCESSES_USA) + " \uD83D\uDC4D , " +
-                        scoreMap.get(CommunicationLibrary.GAME_KILLED_USA) + " \uD83D\uDC80, $  " +  scoreMap.get(CommunicationLibrary.GAME_WASTED_USA) + " \uD83D\uDCB8"
+        graphics2D.drawString("USA: " + scoreMap.get(CommunicationLibrary.KEYS_SUCCESSES_USA) + " \uD83D\uDC4D , " +
+                        scoreMap.get(CommunicationLibrary.KEYS_KILLED_USA) + " \uD83D\uDC80, $  " +  scoreMap.get(CommunicationLibrary.KEYS_WASTED_USA) + " \uD83D\uDCB8"
 
                 , (int) (1476 * screenSize[0]), (int)(40 * screenSize[1]));
 
 
         graphics2D.drawString("USSR: " +
-                        scoreMap.get(CommunicationLibrary.GAME_SUCCESSES_USSR) + " \uD83D\uDC4D, " +
-                        scoreMap.get(CommunicationLibrary.GAME_KILLED_USSR) + " \uD83D\uDC80, $ " +  scoreMap.get(CommunicationLibrary.GAME_WASTED_USSR) + " \uD83D\uDCB8"
+                        scoreMap.get(CommunicationLibrary.KEYS_SUCCESSES_USSR) + " \uD83D\uDC4D, " +
+                        scoreMap.get(CommunicationLibrary.KEYS_KILLED_USSR) + " \uD83D\uDC80, $ " +  scoreMap.get(CommunicationLibrary.KEYS_WASTED_USSR) + " \uD83D\uDCB8"
 
                 , (int) (1476 * screenSize[0]), (int)(70 * screenSize[1]));
 
