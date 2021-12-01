@@ -12,7 +12,7 @@ public class Rescaler {
             int h = bufferedImage.getHeight();
             BufferedImage scaledImage = new BufferedImage((int)(w * wScale), (int)(h * hScale), BufferedImage.TYPE_INT_ARGB);
             AffineTransform at = AffineTransform.getScaleInstance(wScale, hScale);
-            AffineTransformOp ato = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+            AffineTransformOp ato = new AffineTransformOp(at, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
             scaledImage = ato.filter(bufferedImage, scaledImage);
             result = scaledImage;
         } catch (Exception e){

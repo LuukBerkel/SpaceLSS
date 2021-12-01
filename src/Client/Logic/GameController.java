@@ -1,8 +1,10 @@
 package Client.Logic;
 
 import Client.Coms.ComHolder;
+import Client.Scene.Canvas.Customized.InfoScreenUnit;
 import Client.Scene.Canvas.Standardized.TripleChoiceUnit;
 import Client.Scene.Canvas.Standardized.WaiterUnit;
+import Client.Scene.JavaFX.Customized.CustomAnswerScreen;
 import Client.Scene.JavaFX.Customized.CustomErrorMenuView;
 import Client.Scene.JavaFX.Customized.CustomMainMenuView;
 import Client.Scene.JavaFX.Customized.CustomSpashScreenView;
@@ -102,7 +104,7 @@ public class GameController {
     private void MainMenuSendChoiceUSSR(String instruction){
         StandardCanvasView standardCanvasView = new StandardCanvasView(stage,
                 new WaiterUnit("/images/LoadingScreen/soyuz.jpg", "Awaiting other player on server"
-                        , "Fun question: What is the name of this space capsule?"));
+                        , "Fun question: What is the name of this space capsule?"), this);
         standardCanvasView.switchToView();
         holder.sendInstruction(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_USSR);
     }
@@ -111,7 +113,7 @@ public class GameController {
     private void MainMenuSendChoiceUSA(String instruction){
         StandardCanvasView standardCanvasView = new StandardCanvasView(stage, new WaiterUnit("/images/LoadingScreen/dragon.jpg"
                 , "Awaiting other player on server"
-                , "Fun question: What is the name of this space capsule?"));
+                , "Fun question: What is the name of this space capsule?"), this);
         standardCanvasView.switchToView();
         holder.sendInstruction(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_USA);
     }
@@ -120,7 +122,7 @@ public class GameController {
     private void FirstQuestionChoicePole(String instruction){
         StandardCanvasView standardCanvasView = new StandardCanvasView(stage, new WaiterUnit("/images/LoadingScreen/dragon.jpg"
                 , "Awaiting other player on server"
-                , "Fun question: What is the name of this space capsule?"));
+                , "Fun question: What is the name of this space capsule?"), this);
         standardCanvasView.switchToView();
         holder.sendInstruction(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_POLE);
     }
@@ -129,7 +131,7 @@ public class GameController {
     private void FirstQuestionChoiceFirstParallel(String instruction){
         StandardCanvasView standardCanvasView = new StandardCanvasView(stage, new WaiterUnit("/images/LoadingScreen/dragon.jpg"
                 , "Awaiting other player on server"
-                , "Fun question: What is the name of this space capsule?"));
+                , "Fun question: What is the name of this space capsule?"),this);
         standardCanvasView.switchToView();
         holder.sendInstruction(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FIRST_PARALLEL);
     }
@@ -138,7 +140,7 @@ public class GameController {
     private void FirstQuestionChoiceEquator(String instruction){
         StandardCanvasView standardCanvasView = new StandardCanvasView(stage, new WaiterUnit("/images/LoadingScreen/dragon.jpg"
                 , "Awaiting other player on server"
-                , "Fun question: What is the name of this space capsule?"));
+                , "Fun question: What is the name of this space capsule?"),this);
         standardCanvasView.switchToView();
         holder.sendInstruction(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_EQUATOR);
     }
@@ -170,7 +172,7 @@ public class GameController {
         //endregion
 
         //region Scene
-        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores));
+        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores), this);
         StandardVideoView questionVid = new StandardVideoView(stage, "media/1st Question/FIRST_QUESTION_VID.mp4", canvas);
         StandardVideoView bootUpVid = new StandardVideoView(stage, "media/Introduction/USA_INTRO_VID.mp4", questionVid);
 
@@ -203,7 +205,7 @@ public class GameController {
         //endregion
 
         //region Scene
-        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores));
+        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores), this);
         StandardVideoView questionVid = new StandardVideoView(stage, "media/1st Question/FIRST_QUESTION_VID.mp4", canvas);
         StandardVideoView bootUpVid = new StandardVideoView(stage, "media/Introduction/USSR_INTRO_VID.mp4", questionVid);
 
@@ -211,15 +213,105 @@ public class GameController {
         //end region
     }
 
-    
+
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_BOOT_POLE)
+    private void FirstQuestionReceivePole(String instruction){
+        //region Settings
+        MusicHandler.stopTrack();
+        ArrayList<String> assets = new ArrayList<>();
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_EQUATOR);
+        assets.add("/images/1st Question/evenaar.png");
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_POLE);
+        assets.add("/images/1st Question/pole.png");
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FIRST_PARALLEL);
+        assets.add("/images/1st Question/mediaan.png");
+
+        assets.add("/images/1st Question/backgroundlaunchpad.jpg");
+        assets.add("Which launch-site point?");
+
+        HashMap<String, Integer> scores = scoreReader(instruction);
+        //endregion
+
+        //region Scene
+        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores),this);
+        StandardVideoView questionVid = new StandardVideoView(stage, "media/2nd Question/Building_Rocket.mp4", canvas);
+        InfoScreenUnit unit = new InfoScreenUnit("Your answer was wrong", "The answer should have been the equator, " +
+                "\n because it's is more efficient to launch from there.\n\nYou have now wasted a total of 40.000.000 dollar.",  "images/Abandond.jpg");
+        CustomAnswerScreen answerScreen = new CustomAnswerScreen(stage, unit, questionVid);
+        unit.setCallBack(answerScreen);
 
 
+        answerScreen.switchToView();
+        //endregion
+    }
 
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_BOOT_EQUATOR)
+    private void FirstQuestionReceiveEquator(String instruction){
+        //region Settings
+        MusicHandler.stopTrack();
+        ArrayList<String> assets = new ArrayList<>();
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_EQUATOR);
+        assets.add("/images/1st Question/evenaar.png");
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_POLE);
+        assets.add("/images/1st Question/pole.png");
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FIRST_PARALLEL);
+        assets.add("/images/1st Question/mediaan.png");
+
+        assets.add("/images/1st Question/backgroundlaunchpad.jpg");
+        assets.add("Which launch-site point?");
+
+        HashMap<String, Integer> scores = scoreReader(instruction);
+        //endregion
+
+        //region Scene
+        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores),this);
+        StandardVideoView questionVid = new StandardVideoView(stage, "media/2nd Question/Building_Rocket.mp4", canvas);
+        InfoScreenUnit unit = new InfoScreenUnit("Your answer was correct", "The answer is indeed the equator, " +
+                "\n because it's is more efficient to launch from there.\n\nYou saved a total of 40.000.000 dollar.",  "images/Abandond.jpg");
+        CustomAnswerScreen answerScreen = new CustomAnswerScreen(stage, unit, questionVid);
+        unit.setCallBack(answerScreen);
+
+
+        answerScreen.switchToView();
+        //endregion
+    }
+
+
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_BOOT_FIRST_PARALLEL)
+    private void FirstQuestionReceiveFirst(String instruction){
+        //region Settings
+        MusicHandler.stopTrack();
+        ArrayList<String> assets = new ArrayList<>();
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_EQUATOR);
+        assets.add("/images/1st Question/evenaar.png");
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_POLE);
+        assets.add("/images/1st Question/pole.png");
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FIRST_PARALLEL);
+        assets.add("/images/1st Question/mediaan.png");
+
+        assets.add("/images/1st Question/backgroundlaunchpad.jpg");
+        assets.add("Which launch-site point?");
+
+        HashMap<String, Integer> scores = scoreReader(instruction);
+        //endregion
+
+        //region Scene
+        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores),this);
+        StandardVideoView questionVid = new StandardVideoView(stage, "media/2nd Question/Building_Rocket.mp4", canvas);
+        InfoScreenUnit unit = new InfoScreenUnit("Your answer was wrong", "The answer should have been the equator, " +
+                "\n because it's is more efficient to launch from there.\n\nYou have now wasted a total of 40.000.000 dollar.",  "images/Abandond.jpg");
+        CustomAnswerScreen answerScreen = new CustomAnswerScreen(stage, unit, questionVid);
+        unit.setCallBack(answerScreen);
+
+
+        answerScreen.switchToView();
+        //endregion
+    }
     //endregion
 
     //endregion
 
-
+    //region Converter
     public HashMap<String, Integer> scoreReader(String request){
         HashMap<String, Integer> scores = new HashMap<>();
         char[] charRequest = request.toCharArray();
@@ -256,4 +348,5 @@ public class GameController {
         }
         return scores;
     }
+    //endregion
 }

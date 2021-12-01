@@ -1,10 +1,9 @@
-package Client.Scene.JavaFX.Standardized;
+package Client.Scene.JavaFX.Customized;
 
-import Client.Logic.GameController;
-import Client.Scene.Canvas.Customized.SplashScreenUnit;
+import Client.Scene.Canvas.Customized.CallBack;
+import Client.Scene.Canvas.Customized.ErrorScreenUnit;
 import Client.Scene.Canvas.Util.CanvasDrawer;
 import Client.Scene.JavaFX.Util.AbstractView;
-import Client.Scene.Music.MusicHandler;
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -12,22 +11,21 @@ import javafx.stage.Stage;
 import org.jfree.fx.FXGraphics2D;
 import org.jfree.fx.ResizableCanvas;
 
-import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 
-public class StandardCanvasView extends AbstractView {
-
+public class CustomAnswerScreen extends AbstractView implements CallBack {
     //region Constructor
     private final CanvasDrawer canvasDrawer;
     private AnimationTimer animationThread;
-    private GameController controller;
+    private AbstractView nextInLine;
 
-    public StandardCanvasView(Stage stage, CanvasDrawer drawer, GameController controller) {
+    public CustomAnswerScreen(Stage stage,CanvasDrawer drawer, AbstractView nextInLine) {
         super(stage);
+        this.nextInLine = nextInLine;
+        this.canvasDrawer = drawer;
         giveOwnerView(setupsView());
-        canvasDrawer = drawer;
-        this.controller = controller;
+
     }
 
 
@@ -39,7 +37,12 @@ public class StandardCanvasView extends AbstractView {
     @Override
     public void deactivateView() {
         animationThread.stop();
-        MusicHandler.stopTrack();
+    }
+
+    @Override
+    public void animationEnded() {
+        deactivateView();
+        this.nextInLine.switchToView();
     }
 
     //endregion
@@ -56,7 +59,7 @@ public class StandardCanvasView extends AbstractView {
 
         //Setting up update variables
         FXGraphics2D g2d = new FXGraphics2D(canvas.getGraphicsContext2D());
-        animationThread = new AnimationTimer() {
+        animationThread =  new AnimationTimer() {
             long last = -1;
 
             @Override
@@ -72,15 +75,7 @@ public class StandardCanvasView extends AbstractView {
 
         //Click event...
         canvas.setOnMouseClicked(event -> {
-            canvas.setOnMouseClicked(e -> {
-                String response = canvasDrawer.getClickableSurfaces(
-                        new Point2D.Double(e.getX(), e.getY()));
-                if (response != null) {
-                    controller.instructionHandler(response);
-                    deactivateView();
-                }
-
-            });
+            String instruction = canvasDrawer.getClickableSurfaces(new Point2D.Double(event.getX(), event.getY()));
 
         });
 
@@ -97,5 +92,7 @@ public class StandardCanvasView extends AbstractView {
         g.clearRect(0, 0, (int) canvas.getWidth(), (int) canvas.getHeight());
         canvasDrawer.draw(g);
     }
+
+
     //endregion
 }
