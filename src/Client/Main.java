@@ -20,8 +20,6 @@ import java.io.File;
 
 public class Main extends Application {
 
-
-
     /**
      * This the setup method for the application
      * @param stage is a part of the application

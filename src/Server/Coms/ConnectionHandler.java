@@ -24,6 +24,7 @@ public class ConnectionHandler
     private DataInputStream input;
     private DataOutputStream output;
     private Socket client;
+    private int[] scores = new  int[] {0,0,0};
 
     //Logic variables
     private Reflections reflections;
@@ -90,7 +91,29 @@ public class ConnectionHandler
         controller.SubToSession(this);
     }
 
+    //region First question
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_POLE)
+    public void answerPole(String message){
+        session.updateScores(this,0, 0,4000000);
+        session.AwaiterSession();
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_POLE + session.getScores());
 
+    }
+
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_EQUATOR)
+    public void answerEquator(String message){
+        session.updateScores(this,1, 0,0);
+        session.AwaiterSession();
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_EQUATOR + session.getScores());
+    }
+
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FIRST_PARALLEL)
+    public void answerFirstParallel(String message){
+        session.updateScores(this,0, 0,4000000);
+        session.AwaiterSession();
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_FIRST_PARALLEL + session.getScores());
+    }
+    //endregion
 
     //endregion
 
@@ -126,4 +149,5 @@ public class ConnectionHandler
         }
         System.out.println("@Server client termination");
     }
+
 }

@@ -13,6 +13,9 @@ public class CommunicationLibrary {
     //region Game handling
     public final static String COMMUNICATION_SESSION_BOOT_USA = "@Answer: Boot USA";
     public final static String COMMUNICATION_SESSION_BOOT_USSR = "@Answer:  Boot USSR";
+    public final static String COMMUNICATION_SESSION_BOOT_POLE = "@Game: Boot POLE";
+    public final static String COMMUNICATION_SESSION_BOOT_EQUATOR = "@Game: Boot EQUATOR";
+    public final static String COMMUNICATION_SESSION_BOOT_FIRST_PARALLEL = "@Game: Boot first PARALLEL  ";
 
     public final static String COMMUNICATION_SESSION_REQUEST_USA = "@Request: USA";
     public final static String COMMUNICATION_SESSION_REQUEST_USSR = "@Request: USSR";
@@ -21,13 +24,14 @@ public class CommunicationLibrary {
     public final static String COMMUNICATION_SESSION_REQUEST_EQUATOR = "@Request: Equator";
     public final static String COMMUNICATION_SESSION_REQUEST_FIRST_PARALLEL = "@Request: First parallel";
 
+
+
     //endregion
 
     //endregion
 
     //region Internal
-    public final static String GAME_INTERNAL_QUIT = "@Game: Quit";
-
+    public final static String GAME_INTERNAL_QUIT = "quit gamejkldfsjsdfl";
     //region Keys
     public final static String KEYS_SUCCESSES_USA = "@Score: Success USA";
     public final static String KEYS_SUCCESSES_USSR = "@Score: Success USSR";

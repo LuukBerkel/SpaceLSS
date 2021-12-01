@@ -79,6 +79,7 @@ public class GameController {
         System.exit(0);
     }
     //endregion
+
     //region ERROR'S
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_ALREADY_CHOSEN_ERROR)
     private void ErrorAlreadyChosenMain(String instruction){
@@ -115,6 +116,32 @@ public class GameController {
         holder.sendInstruction(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_USA);
     }
 
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_POLE)
+    private void FirstQuestionChoicePole(String instruction){
+        StandardCanvasView standardCanvasView = new StandardCanvasView(stage, new WaiterUnit("/images/LoadingScreen/dragon.jpg"
+                , "Awaiting other player on server"
+                , "Fun question: What is the name of this space capsule?"));
+        standardCanvasView.switchToView();
+        holder.sendInstruction(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_POLE);
+    }
+
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FIRST_PARALLEL)
+    private void FirstQuestionChoiceFirstParallel(String instruction){
+        StandardCanvasView standardCanvasView = new StandardCanvasView(stage, new WaiterUnit("/images/LoadingScreen/dragon.jpg"
+                , "Awaiting other player on server"
+                , "Fun question: What is the name of this space capsule?"));
+        standardCanvasView.switchToView();
+        holder.sendInstruction(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FIRST_PARALLEL);
+    }
+
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_EQUATOR)
+    private void FirstQuestionChoiceEquator(String instruction){
+        StandardCanvasView standardCanvasView = new StandardCanvasView(stage, new WaiterUnit("/images/LoadingScreen/dragon.jpg"
+                , "Awaiting other player on server"
+                , "Fun question: What is the name of this space capsule?"));
+        standardCanvasView.switchToView();
+        holder.sendInstruction(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_EQUATOR);
+    }
     //endregion
 
     //region RESPONSES
@@ -183,8 +210,50 @@ public class GameController {
         bootUpVid.switchToView();
         //end region
     }
-    //endregion
+
+    
+
+
 
     //endregion
 
+    //endregion
+
+
+    public HashMap<String, Integer> scoreReader(String request){
+        HashMap<String, Integer> scores = new HashMap<>();
+        char[] charRequest = request.toCharArray();
+        int indexStartReading = request.indexOf('#');
+        int valuesRead = 0;
+        String cachedValue = "";
+        while (valuesRead < 7){
+            indexStartReading++;
+            if (charRequest[indexStartReading] == '!'){
+                valuesRead++;
+                if (valuesRead == 1){
+                    scores.put(CommunicationLibrary.KEYS_SUCCESSES_USA, Integer.parseInt(cachedValue));
+                }
+                if (valuesRead == 2){
+                    scores.put(CommunicationLibrary.KEYS_KILLED_USA, Integer.parseInt(cachedValue));
+                }
+                if (valuesRead == 3){
+                    scores.put(CommunicationLibrary.KEYS_WASTED_USA, Integer.parseInt(cachedValue));
+                }
+                if (valuesRead == 4){
+                    scores.put(CommunicationLibrary.KEYS_SUCCESSES_USSR, Integer.parseInt(cachedValue));
+                }
+                if (valuesRead == 5){
+                    scores.put(CommunicationLibrary.KEYS_KILLED_USSR, Integer.parseInt(cachedValue));
+                }
+                if (valuesRead == 6){
+                    scores.put(CommunicationLibrary.KEYS_WASTED_USSR, Integer.parseInt(cachedValue));
+                    valuesRead++;
+                }
+                cachedValue = "";
+            } else {
+                cachedValue += charRequest[indexStartReading];
+            }
+        }
+        return scores;
+    }
 }
