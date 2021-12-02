@@ -64,7 +64,7 @@ public class GameController {
     public void instructionHandler(String instruction){
         System.out.println(instruction);
         for (Method e: reflections.getMethodsAnnotatedWith(MethodJumper.class)) {
-            if (e.getAnnotation(MethodJumper.class).command().contains(instruction)){
+            if (instruction.contains(e.getAnnotation(MethodJumper.class).command())){
                 try {
                     e.invoke(this, instruction);
                 }
@@ -236,7 +236,7 @@ public class GameController {
         StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores),this);
         StandardVideoView questionVid = new StandardVideoView(stage, "media/2nd Question/Building_Rocket.mp4", canvas);
         InfoScreenUnit unit = new InfoScreenUnit("Your answer was wrong", "The answer should have been the equator, " +
-                "\n because it's is more efficient to launch from there.\n\nYou have now wasted a total of 40.000.000 dollar.",  "images/Abandond.jpg");
+                "\n because it's is more efficient to launch from there.\n\nYou have now wasted a total of 40.000.000 dollar.",  "/images/Abandond.jpg");
         CustomAnswerScreen answerScreen = new CustomAnswerScreen(stage, unit, questionVid);
         unit.setCallBack(answerScreen);
 
@@ -267,7 +267,7 @@ public class GameController {
         StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores),this);
         StandardVideoView questionVid = new StandardVideoView(stage, "media/2nd Question/Building_Rocket.mp4", canvas);
         InfoScreenUnit unit = new InfoScreenUnit("Your answer was correct", "The answer is indeed the equator, " +
-                "\n because it's is more efficient to launch from there.\n\nYou saved a total of 40.000.000 dollar.",  "images/Abandond.jpg");
+                "\n because it's is more efficient to launch from there.\n\nYou saved a total of 40.000.000 dollar.",  "/images/Abandond.jpg");
         CustomAnswerScreen answerScreen = new CustomAnswerScreen(stage, unit, questionVid);
         unit.setCallBack(answerScreen);
 
@@ -299,7 +299,7 @@ public class GameController {
         StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores),this);
         StandardVideoView questionVid = new StandardVideoView(stage, "media/2nd Question/Building_Rocket.mp4", canvas);
         InfoScreenUnit unit = new InfoScreenUnit("Your answer was wrong", "The answer should have been the equator, " +
-                "\n because it's is more efficient to launch from there.\n\nYou have now wasted a total of 40.000.000 dollar.",  "images/Abandond.jpg");
+                "\n because it's is more efficient to launch from there.\n\nYou have now wasted a total of 40.000.000 dollar.",  "/images/Abandond.jpg");
         CustomAnswerScreen answerScreen = new CustomAnswerScreen(stage, unit, questionVid);
         unit.setCallBack(answerScreen);
 

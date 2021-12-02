@@ -28,7 +28,7 @@ public class InfoScreenUnit implements CanvasDrawer {
         //Parsing assets scene
         try {
             this.backgroundImage = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource(image))), GameController.targetSize[0]*1.5, GameController.targetSize[1]*1.5);
+                    .getResource(image))), GameController.targetSize[0], GameController.targetSize[1]);
 
         }catch (Exception e){
             e.printStackTrace();
@@ -47,7 +47,7 @@ public class InfoScreenUnit implements CanvasDrawer {
         graphics2D.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, (int)(60 * GameController.targetSize[0])));
         graphics2D.drawString(textWaiterScreen, (int) (230 * GameController.targetSize[0]), (int)(120 * GameController.targetSize[1]));
         graphics2D.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, (int)(30 * GameController.targetSize[0])));
-        graphics2D.drawString(explan, (int) (230 * GameController.targetSize[0]), (int)(160 * GameController.targetSize[1]));
+        graphics2D.drawString(explan, (int) (230 * GameController.targetSize[0]), (int)(190 * GameController.targetSize[1]));
     }
 
     @Override

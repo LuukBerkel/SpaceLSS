@@ -12,6 +12,7 @@ public class SessionHandler {
     final HashMap<ConnectionHandler, List<Integer>> scores = new HashMap<>();
     private Integer awaitCounter = 0;
     private final List<ConnectionHandler> sessionPlayers;
+    Integer count = 0;
 
 
     public SessionHandler(ConnectionHandler playerOne,
@@ -48,15 +49,23 @@ public class SessionHandler {
         }
     }
 
-    public void AwaiterSession(){
-        synchronized (awaitCounter) {
-            awaitCounter++;
-        }
-        while (awaitCounter < 2);
-        synchronized (awaitCounter) {
-            awaitCounter--;
+    public void AwaiterSession(ConnectionHandler handler){
+        upCount();
+      while (true){
+          if (getIndex() % 2 == 0) break;
+      }
+    }
+
+    public int getIndex(){
+        synchronized (count){
+            return count;
         }
     }
+
+    public void upCount(){
+        count++;
+    }
+
 
     public void updateScores(ConnectionHandler handler, int succeses, int killed, int wasted){
         synchronized (scores) {

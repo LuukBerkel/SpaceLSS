@@ -59,16 +59,17 @@ public class ConnectionHandler
             while (running) {
                 try {
                     String message= input.readUTF();
+                    System.out.println(message);
                     for (Method e: reflections.getMethodsAnnotatedWith(MethodJumper.class)) {
-                        if (e.getAnnotation(MethodJumper.class).command().contains(message)){
-
+                        if (message.contains(e.getAnnotation(MethodJumper.class).command())){
                             e.invoke(this, message);
-                            System.out.println("@Server request: "   + e.getName());
+                            System.out.println("Interpeting: "   + e.getName());
                         }
 
                     }
-
+                    System.out.println("interpeted");
                 } catch (IOException | InvocationTargetException | IllegalAccessException e) {
+                    e.printStackTrace();
                     System.out.println("@Server connection lost..");
                     if (session != null)session.KillSession();
                     this.KillConnection();
@@ -94,8 +95,8 @@ public class ConnectionHandler
     //region First question
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_POLE)
     public void answerPole(String message){
-        session.updateScores(this,0, 0,4000000);
-        session.AwaiterSession();
+        //session.updateScores(this,0, 0,4000000);
+        session.AwaiterSession(this);
         connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_POLE + session.getScores());
 
     }
@@ -103,14 +104,14 @@ public class ConnectionHandler
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_EQUATOR)
     public void answerEquator(String message){
         session.updateScores(this,1, 0,0);
-        session.AwaiterSession();
+        session.AwaiterSession(this);
         connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_EQUATOR + session.getScores());
     }
 
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FIRST_PARALLEL)
     public void answerFirstParallel(String message){
         session.updateScores(this,0, 0,4000000);
-        session.AwaiterSession();
+        session.AwaiterSession(this);
         connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_FIRST_PARALLEL + session.getScores());
     }
     //endregion

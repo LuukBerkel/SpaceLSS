@@ -19,7 +19,8 @@ public class ComSending {
                 synchronized (sendQueue) {
                     if (!sendQueue.isEmpty()) {
                         try {
-                            output.writeUTF(sendQueue.poll());
+                            output.writeUTF(sendQueue.peek());
+                            System.out.println(sendQueue.poll());
                         } catch (IOException e) {
                             controller.instructionHandler(CommunicationLibrary.COMMUNICATION_SESSION_COM_ERROR);
                             running = false;
