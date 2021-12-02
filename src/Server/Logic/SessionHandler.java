@@ -9,7 +9,7 @@ import java.util.*;
 public class SessionHandler {
 
     //region Basic functions
-    final HashMap<ConnectionHandler, List<Integer>> scores = new HashMap<>();
+    HashMap<ConnectionHandler, List<Integer>> scores = new HashMap<>();
     private Integer awaitCounter = 0;
     private final List<ConnectionHandler> sessionPlayers;
     Integer count = 0;
@@ -69,9 +69,7 @@ public class SessionHandler {
 
     public void updateScores(ConnectionHandler handler, int succeses, int killed, int wasted){
         synchronized (scores) {
-            scores.get(handler).add( scores.get(handler).get(0) + succeses, 0);
-            scores.get(handler).add( scores.get(handler).get(1) + killed, 1);
-            scores.get(handler).add( scores.get(handler).get(2) + wasted, 2);
+            scores.replace(handler, Arrays.asList( scores.get(handler).get(0) + succeses, scores.get(handler).get(1) + killed, scores.get(handler).get(2) + wasted));
         }
     }
 

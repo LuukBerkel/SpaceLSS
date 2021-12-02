@@ -58,6 +58,8 @@ public class CustomMainMenuView extends AbstractView  {
         animationThread.start();
 
         //Starting of media
+        mediaPlayer.setAutoPlay(true);
+        mediaPlayer.setCycleCount(Integer.MAX_VALUE);
         mediaPlayer.play();
         MusicHandler.loopTrack("media/Mainmenu/music.mp3");
     }
@@ -163,8 +165,7 @@ public class CustomMainMenuView extends AbstractView  {
 
         //Media playback
         mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setAutoPlay(true);
-        mediaPlayer.setCycleCount(Integer.MAX_VALUE);
+
 
         return new MediaView(mediaPlayer);
     }

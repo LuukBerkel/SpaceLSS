@@ -2,6 +2,7 @@ package Client.Logic;
 
 import Client.Coms.ComHolder;
 import Client.Scene.Canvas.Customized.InfoScreenUnit;
+import Client.Scene.Canvas.Standardized.QuadChoiceUnit;
 import Client.Scene.Canvas.Standardized.TripleChoiceUnit;
 import Client.Scene.Canvas.Standardized.WaiterUnit;
 import Client.Scene.JavaFX.Customized.CustomAnswerScreen;
@@ -220,23 +221,25 @@ public class GameController {
         MusicHandler.stopTrack();
         ArrayList<String> assets = new ArrayList<>();
         assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_EQUATOR);
-        assets.add("/images/1st Question/evenaar.png");
+        assets.add("/images/2nd Question/LSSFalcon.png");
         assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_POLE);
-        assets.add("/images/1st Question/pole.png");
+        assets.add("/images/2nd Question/Tiny.png");
         assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FIRST_PARALLEL);
-        assets.add("/images/1st Question/mediaan.png");
+        assets.add("/images/2nd Question/LSSAtlas.png");
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FIRST_PARALLEL);
+        assets.add("/images/2nd Question/Chonk.png");
 
-        assets.add("/images/1st Question/backgroundlaunchpad.jpg");
-        assets.add("Which launch-site point?");
+        assets.add("/images/2nd Question/starship.jpg");
+        assets.add("Which rocket will fly?");
 
         HashMap<String, Integer> scores = scoreReader(instruction);
         //endregion
 
         //region Scene
-        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores),this);
+        StandardCanvasView canvas = new StandardCanvasView(stage, new QuadChoiceUnit(assets, scores),this);
         StandardVideoView questionVid = new StandardVideoView(stage, "media/2nd Question/Building_Rocket.mp4", canvas);
         InfoScreenUnit unit = new InfoScreenUnit("Your answer was wrong", "The answer should have been the equator, " +
-                "\n because it's is more efficient to launch from there.\n\nYou have now wasted a total of 40.000.000 dollar.",  "/images/Abandond.jpg");
+                "\n because it's is more efficient to launch from there.\n\nYou have now wasted a total of 40.000.000 dollar.", "/images/1st Question/Abandond.jpg");
         CustomAnswerScreen answerScreen = new CustomAnswerScreen(stage, unit, questionVid);
         unit.setCallBack(answerScreen);
 
@@ -251,23 +254,25 @@ public class GameController {
         MusicHandler.stopTrack();
         ArrayList<String> assets = new ArrayList<>();
         assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_EQUATOR);
-        assets.add("/images/1st Question/evenaar.png");
+        assets.add("/images/2nd Question/LSSFalcon.png");
         assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_POLE);
-        assets.add("/images/1st Question/pole.png");
+        assets.add("/images/2nd Question/Tiny.png");
         assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FIRST_PARALLEL);
-        assets.add("/images/1st Question/mediaan.png");
+        assets.add("/images/2nd Question/LSSAtlas.png");
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FIRST_PARALLEL);
+        assets.add("/images/2nd Question/Chonk.png");
 
-        assets.add("/images/1st Question/backgroundlaunchpad.jpg");
-        assets.add("Which launch-site point?");
+        assets.add("/images/2nd Question/starship.jpg");
+        assets.add("Which rocket will fly?");
 
         HashMap<String, Integer> scores = scoreReader(instruction);
         //endregion
 
         //region Scene
-        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores),this);
+        StandardCanvasView canvas = new StandardCanvasView(stage, new QuadChoiceUnit(assets, scores),this);
         StandardVideoView questionVid = new StandardVideoView(stage, "media/2nd Question/Building_Rocket.mp4", canvas);
         InfoScreenUnit unit = new InfoScreenUnit("Your answer was correct", "The answer is indeed the equator, " +
-                "\n because it's is more efficient to launch from there.\n\nYou saved a total of 40.000.000 dollar.",  "/images/Abandond.jpg");
+                "\n because it's is more efficient to launch from there.\n\nYou saved a total of 40.000.000 dollar.", "/images/1st Question/Abandond.jpg");
         CustomAnswerScreen answerScreen = new CustomAnswerScreen(stage, unit, questionVid);
         unit.setCallBack(answerScreen);
 
@@ -283,23 +288,25 @@ public class GameController {
         MusicHandler.stopTrack();
         ArrayList<String> assets = new ArrayList<>();
         assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_EQUATOR);
-        assets.add("/images/1st Question/evenaar.png");
+       assets.add("/images/2nd Question/LSSFalcon.png");
         assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_POLE);
-        assets.add("/images/1st Question/pole.png");
+        assets.add("/images/2nd Question/Tiny.png");
         assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FIRST_PARALLEL);
-        assets.add("/images/1st Question/mediaan.png");
+        assets.add("/images/2nd Question/LSSAtlas.png");
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FIRST_PARALLEL);
+        assets.add("/images/2nd Question/Chonk.png");
 
-        assets.add("/images/1st Question/backgroundlaunchpad.jpg");
-        assets.add("Which launch-site point?");
+        assets.add("/images/2nd Question/starship.jpg");
+        assets.add("Which rocket will fly?");
 
         HashMap<String, Integer> scores = scoreReader(instruction);
         //endregion
 
         //region Scene
-        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(assets, scores),this);
+        StandardCanvasView canvas = new StandardCanvasView(stage, new QuadChoiceUnit(assets, scores),this);
         StandardVideoView questionVid = new StandardVideoView(stage, "media/2nd Question/Building_Rocket.mp4", canvas);
         InfoScreenUnit unit = new InfoScreenUnit("Your answer was wrong", "The answer should have been the equator, " +
-                "\n because it's is more efficient to launch from there.\n\nYou have now wasted a total of 40.000.000 dollar.",  "/images/Abandond.jpg");
+                "\n because it's is more efficient to launch from there.\n\nYou have now wasted a total of 40.000.000 dollar.", "/images/1st Question/Abandond.jpg");
         CustomAnswerScreen answerScreen = new CustomAnswerScreen(stage, unit, questionVid);
         unit.setCallBack(answerScreen);
 

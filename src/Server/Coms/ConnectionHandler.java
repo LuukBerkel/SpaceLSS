@@ -95,7 +95,7 @@ public class ConnectionHandler
     //region First question
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_POLE)
     public void answerPole(String message){
-        //session.updateScores(this,0, 0,4000000);
+        session.updateScores(this,0, 0,4000000);
         session.AwaiterSession(this);
         connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_POLE + session.getScores());
 
