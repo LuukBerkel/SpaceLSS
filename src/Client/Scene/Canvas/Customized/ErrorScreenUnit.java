@@ -24,9 +24,9 @@ public class ErrorScreenUnit implements CanvasDrawer {
         //Parsing assets scene
         try {
             this.backgroundImage = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource("/images/ErrorSCreen/explosion.jpg"))), GameController.targetSize[0], GameController.targetSize[1]);
+                    .getResource("/images/ErrorScreen/explosion.jpg"))), GameController.targetSize[0], GameController.targetSize[1]);
             this.errorImage = Rescaler.rescaler((ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource("/images/ErrorSCreen/error.png")))), GameController.targetSize[0]/1.5, GameController.targetSize[1]/1.5);
+                    .getResource("/images/ErrorScreen/error.png")))), GameController.targetSize[0]/1.5, GameController.targetSize[1]/1.5);
 
         }catch (Exception e){
             e.printStackTrace();

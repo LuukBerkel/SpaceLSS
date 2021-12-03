@@ -22,6 +22,7 @@ import java.awt.geom.Point2D;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.util.Objects;
 
 public class CustomMainMenuView extends AbstractView  {
 
@@ -156,7 +157,7 @@ public class CustomMainMenuView extends AbstractView  {
         //Trying to parse media
         Media media = null;
         try {
-            media = new Media(getClass().getClassLoader().getResource(mediaFile.getPath()).toURI().toURL().toString());
+            media = new Media(Objects.requireNonNull(getClass().getResource(mediaFile.getPath())).toURI().toURL().toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (URISyntaxException e) {

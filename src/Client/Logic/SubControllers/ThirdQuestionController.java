@@ -1,6 +1,7 @@
 package Client.Logic.SubControllers;
 
 import Client.Logic.GameController;
+import Client.Logic.SceneGetter.QuestionThree;
 import Client.Logic.SceneGetter.QuestionTwo;
 import Client.Logic.SceneGetter.StandartMapper;
 import Client.Scene.Canvas.Standardized.QuadChoiceUnit;
@@ -60,9 +61,8 @@ public class ThirdQuestionController implements SubCaller
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_BOOT_FLAT)
     private void SecondQuestionReceiveFirst(String instruction){
         //region Settings
-        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(QuestionThreturnContents(), StandartMapper.scoreReader(instruction)),controller);
-        StandardVideoView questionVid = new StandardVideoView(stage, "media/2nd Question/Building_Rocket.mp4", canvas);
-        StandardVideoView answerScreen = new StandardVideoView(stage, "media/2nd Question/FalconResult.mp4", canvas);
+        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(QuestionThree.returnContents(), StandartMapper.scoreReader(instruction)),controller);
+        StandardVideoView answerScreen = new StandardVideoView(stage, "media/3rd Question/FladVid.mp4", canvas);
 
 
         answerScreen.switchToView();
@@ -72,9 +72,8 @@ public class ThirdQuestionController implements SubCaller
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_BOOT_STEEP)
     private void SecondQuestionReceiveSecond(String instruction){
         //region Settings
-        StandardCanvasView canvas = new StandardCanvasView(stage, new QuadChoiceUnit(QuestionTwo.returnContents(), StandartMapper.scoreReader(instruction)),controller);
-        StandardVideoView questionVid = new StandardVideoView(stage, "media/2nd Question/Building_Rocket.mp4", canvas);
-        StandardVideoView answerScreen = new StandardVideoView(stage, "media/2nd Question/AtlasResult.mp4", canvas);
+        StandardCanvasView canvas = new StandardCanvasView(stage, new QuadChoiceUnit(QuestionThree.returnContents(), StandartMapper.scoreReader(instruction)),controller);
+        StandardVideoView answerScreen = new StandardVideoView(stage, "media/3rd Question/SteepVid.mp4", canvas);
 
 
         answerScreen.switchToView();
@@ -84,9 +83,8 @@ public class ThirdQuestionController implements SubCaller
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_BOOT_NORMAL)
     private void SecondQuestionReceiveThird(String instruction){
         //region Settings
-        StandardCanvasView canvas = new StandardCanvasView(stage, new QuadChoiceUnit(QuestionTwo.returnContents(), StandartMapper.scoreReader(instruction)),controller);
-        StandardVideoView questionVid = new StandardVideoView(stage, "media/2nd Question/Building_Rocket.mp4", canvas);
-        StandardVideoView answerScreen = new StandardVideoView(stage, "media/2nd Question/ChunkResult.mp4", canvas);
+        StandardCanvasView canvas = new StandardCanvasView(stage, new QuadChoiceUnit(QuestionThree.returnContents(), StandartMapper.scoreReader(instruction)),controller);
+        StandardVideoView answerScreen = new StandardVideoView(stage, "media/3rd Question/StandartVid.mp4", canvas);
 
 
         answerScreen.switchToView();

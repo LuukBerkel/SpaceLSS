@@ -73,8 +73,8 @@ public class SecondQuestionController implements SubCaller{
     private void SecondQuestionReceiveFirst(String instruction){
         //region Settings
         StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(QuestionThree.returnContents(), StandartMapper.scoreReader(instruction)),controller);
-        StandardVideoView questionVid = new StandardVideoView(stage, "media/2nd Question/Building_Rocket.mp4", canvas);
-        StandardVideoView answerScreen = new StandardVideoView(stage, "media/2nd Question/FalconResult.mp4", canvas);
+        StandardVideoView questionVid = new StandardVideoView(stage, "media/3rd Question/introVid.mp4", canvas);
+        StandardVideoView answerScreen = new StandardVideoView(stage, "media/2nd Question/FalconResult.mp4", questionVid);
 
 
         answerScreen.switchToView();
@@ -85,8 +85,8 @@ public class SecondQuestionController implements SubCaller{
     private void SecondQuestionReceiveSecond(String instruction){
         //region Settings
         StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(QuestionThree.returnContents(), StandartMapper.scoreReader(instruction)),controller);
-        StandardVideoView questionVid = new StandardVideoView(stage, "media/2nd Question/Building_Rocket.mp4", canvas);
-        StandardVideoView answerScreen = new StandardVideoView(stage, "media/2nd Question/AtlasResult.mp4", canvas);
+        StandardVideoView questionVid = new StandardVideoView(stage, "media/3rd Question/introVid.mp4", canvas);
+        StandardVideoView answerScreen = new StandardVideoView(stage, "media/2nd Question/AtlasResult.mp4", questionVid);
 
 
         answerScreen.switchToView();
@@ -97,8 +97,8 @@ public class SecondQuestionController implements SubCaller{
     private void SecondQuestionReceiveThirth(String instruction){
         //region Settings
         StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(QuestionThree.returnContents(), StandartMapper.scoreReader(instruction)),controller);
-        StandardVideoView questionVid = new StandardVideoView(stage, "media/2nd Question/Building_Rocket.mp4", canvas);
-        StandardVideoView answerScreen = new StandardVideoView(stage, "media/2nd Question/ChunkResult.mp4", canvas);
+        StandardVideoView questionVid = new StandardVideoView(stage, "media/3rd Question/introVid.mp4", canvas);
+        StandardVideoView answerScreen = new StandardVideoView(stage, "media/2nd Question/ChunkResult.mp4", questionVid);
 
 
         answerScreen.switchToView();
@@ -109,8 +109,8 @@ public class SecondQuestionController implements SubCaller{
     private void SecondQuestionReceiveFourth(String instruction){
         //region Settings
         StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(QuestionThree.returnContents(), StandartMapper.scoreReader(instruction)),controller);
-        StandardVideoView questionVid = new StandardVideoView(stage, "media/2nd Question/Building_Rocket.mp4", canvas);
-        StandardVideoView answerScreen = new StandardVideoView(stage, "media/2nd Question/TinyResult.mp4", canvas);
+        StandardVideoView questionVid = new StandardVideoView(stage, "media/3rd Question/introVid.mp4", canvas);
+        StandardVideoView answerScreen = new StandardVideoView(stage, "media/2nd Question/TinyResult.mp4",questionVid);
 
 
         answerScreen.switchToView();
