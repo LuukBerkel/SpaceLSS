@@ -157,7 +157,7 @@ public class CustomMainMenuView extends AbstractView  {
         //Trying to parse media
         Media media = null;
         try {
-            media = new Media(Objects.requireNonNull(getClass().getResource(mediaFile.getPath())).toURI().toURL().toString());
+            media = new Media(Objects.requireNonNull(getClass().getClassLoader().getResource(mediaFile.getPath())).toURI().toURL().toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (URISyntaxException e) {
