@@ -114,6 +114,36 @@ public class ConnectionHandler
         session.AwaiterSession(this);
         connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_FIRST_PARALLEL + session.getScores());
     }
+
+    //region First question
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FALCON)
+    public void answerFalcon(String message){
+        session.updateScores(this,0, 0,8000000);
+        session.AwaiterSession(this);
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_FALCON + session.getScores());
+
+    }
+
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_ATLAS)
+    public void answerAtlas(String message){
+        session.updateScores(this,1, 0,0);
+        session.AwaiterSession(this);
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_ATLAS + session.getScores());
+    }
+
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_CHUNK)
+    public void answerChunk(String message){
+        session.updateScores(this,0, 1,6000000);
+        session.AwaiterSession(this);
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_CHUNK + session.getScores());
+    }
+
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_TINY)
+    public void answerTiny(String message){
+        session.updateScores(this,0, 1,6000000);
+        session.AwaiterSession(this);
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_TINY + session.getScores());
+    }
     //endregion
 
     //endregion

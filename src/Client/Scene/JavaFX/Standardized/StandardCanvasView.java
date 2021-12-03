@@ -71,18 +71,17 @@ public class StandardCanvasView extends AbstractView {
         };
 
         //Click event...
-        canvas.setOnMouseClicked(event -> {
-            canvas.setOnMouseClicked(e -> {
-                String response = canvasDrawer.getClickableSurfaces(
-                        new Point2D.Double(e.getX(), e.getY()));
-                if (response != null) {
-                    controller.instructionHandler(response);
-                    deactivateView();
-                }
-
-            });
+        canvas.setOnMouseClicked(e -> {
+            String response = canvasDrawer.getClickableSurfaces(
+                    new Point2D.Double(e.getX(), e.getY()));
+            if (response != null) {
+                controller.instructionHandler(response);
+                deactivateView();
+            }
 
         });
+
+
 
 
         return mainPane;

@@ -49,13 +49,13 @@ public class QuadChoiceUnit implements CanvasDrawer {
         //Parsing assets scene
         try {
             this.aFlag = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource(data.get(1)))), screenSize[0]/2.5, screenSize[1]/2.5);
+                    .getResource(data.get(1)))), screenSize[0], screenSize[1]);
             this.bFlag = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource(data.get(3)))), screenSize[0]/2.5, screenSize[1]/2.5);
+                    .getResource(data.get(3)))), screenSize[0], screenSize[1]);
             this.cFlag = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource(data.get(5)))), screenSize[0]/2.5, screenSize[1]/2.5);
+                    .getResource(data.get(5)))), screenSize[0], screenSize[1]);
             this.dFlag = Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
-                    .getResource(data.get(7)))), screenSize[0]/2.5, screenSize[1]/2.5);
+                    .getResource(data.get(7)))), screenSize[0], screenSize[1]);
             this.background= Rescaler.rescaler(ImageIO.read(Objects.requireNonNull(getClass()
                     .getResource(data.get(8)))), screenSize[0], screenSize[1]);
         }catch (Exception e){

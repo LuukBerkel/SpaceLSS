@@ -72,7 +72,7 @@ public class TripleChoiceUnit implements CanvasDrawer {
         //Actions
         buttonMap.put(aButton, data.get(0));
         buttonMap.put(bButton, data.get(2));
-        buttonMap.put(cButton, data.get(3));
+        buttonMap.put(cButton, data.get(4));
     }
 
     @Override
