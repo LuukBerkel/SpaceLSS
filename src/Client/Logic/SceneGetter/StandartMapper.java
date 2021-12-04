@@ -3,6 +3,7 @@ package Client.Logic.SceneGetter;
 import Shared.CommunicationLibrary;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class StandartMapper {
     public static HashMap<String, Integer> getEmptyMap(){
@@ -52,4 +53,20 @@ public class StandartMapper {
         }
         return scores;
     }
+
+    public static String scoreWinner(String request){
+        Map<String, Integer> finalsocres =  scoreReader(request);
+        int wastedUSA = finalsocres.get(CommunicationLibrary.KEYS_WASTED_USA ) + (finalsocres.get(CommunicationLibrary.KEYS_KILLED_USA) * 1000000);
+        int wastedUSSR = finalsocres.get(CommunicationLibrary.KEYS_WASTED_USSR ) + (finalsocres.get(CommunicationLibrary.KEYS_KILLED_USSR) * 1000000);
+        if (wastedUSA > wastedUSSR){
+            return "USSR";
+        } else if (wastedUSSR > wastedUSA) {
+            return "USA";
+        } else {
+            return "NOBODY";
+        }
+
+    }
+
+
 }

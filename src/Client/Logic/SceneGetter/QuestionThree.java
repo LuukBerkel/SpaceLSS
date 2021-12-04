@@ -10,9 +10,9 @@ public class QuestionThree {
         assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FLAT);
         assets.add("/images/3rd Question/flatButton.png");
         assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_STEEP);
-        assets.add("/images/3rd Question/normalButton.png");
-        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_NORMAL);
         assets.add("/images/3rd Question/steepButton.png");
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_NORMAL);
+        assets.add("/images/3rd Question/normalButton.png");
 
         assets.add("/images/3rd Question/Background.png");
         assets.add("Which trajectory is for orbit?");

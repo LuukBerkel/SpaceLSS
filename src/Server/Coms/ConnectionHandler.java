@@ -96,7 +96,6 @@ public class ConnectionHandler
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_POLE)
     public void answerPole(String message){
         session.updateScores(this,0, 0,4000000);
-        session.AwaiterSession(this);
         connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_POLE + session.getScores());
 
     }
@@ -111,7 +110,6 @@ public class ConnectionHandler
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FIRST_PARALLEL)
     public void answerFirstParallel(String message){
         session.updateScores(this,0, 0,4000000);
-        session.AwaiterSession(this);
         connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_FIRST_PARALLEL + session.getScores());
     }
 
@@ -119,7 +117,6 @@ public class ConnectionHandler
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FALCON)
     public void answerFalcon(String message){
         session.updateScores(this,0, 0,8000000);
-        session.AwaiterSession(this);
         connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_FALCON + session.getScores());
 
     }
@@ -134,16 +131,76 @@ public class ConnectionHandler
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_CHUNK)
     public void answerChunk(String message){
         session.updateScores(this,0, 1,6000000);
-        session.AwaiterSession(this);
         connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_CHUNK + session.getScores());
     }
 
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_TINY)
     public void answerTiny(String message){
         session.updateScores(this,0, 1,6000000);
-        session.AwaiterSession(this);
         connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_TINY + session.getScores());
     }
+
+    //region First question
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_FLAT)
+    public void answerFlat(String message){
+        session.updateScores(this,0, 0,8000000);
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_FLAT + session.getScores());
+
+    }
+
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_NORMAL)
+    public void answerNormal(String message){
+        session.updateScores(this,1, 0,0);
+        session.AwaiterSession(this);
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_NORMAL + session.getScores());
+    }
+
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_STEEP)
+    public void answerSteep(String message){
+        session.updateScores(this,0, 0,8000000);
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_STEEP + session.getScores());
+    }
+
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_RETRO)
+    public void answerRetro(String message){
+        session.updateScores(this,1, 0,0);
+        session.AwaiterSession(this);
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_NORMAL + session.getScores());
+    }
+
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_POLAR)
+    public void answerPolar(String message){
+        session.updateScores(this,0, 3,8000000);
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_STEEP + session.getScores());
+    }
+
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_STANDARD)
+    public void answerAngular(String message){
+        session.updateScores(this,1, 0,0);
+        session.AwaiterSession(this);
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_NORMAL + session.getScores());
+    }
+
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_ANGULAR)
+    public void answerStandard(String message){
+        session.updateScores(this,0, 3,8000000);
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_STEEP + session.getScores());
+    }
+
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_LANDING_FLAT)
+    public void answerLandingFlat(String message){
+        session.updateScores(this,1, 0,0);
+        session.AwaiterSession(this);
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_NORMAL + session.getScores());
+    }
+
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_LANDING_STEEP)
+    public void answerLandingSteep(String message){
+        session.updateScores(this,0, 3,8000000);
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_STEEP + session.getScores());
+    }
+
+
     //endregion
 
     //endregion

@@ -1,16 +1,17 @@
-package Client.Logic.SubControllers;
+package Client.Logic.SubControllers.Questions;
 
 import Client.Logic.GameController;
 import Client.Logic.SceneGetter.QuestionOne;
 import Client.Logic.SceneGetter.QuestionTwo;
 import Client.Logic.SceneGetter.StandartMapper;
+import Client.Logic.SubControllers.Menus.SubCaller;
 import Client.Scene.Canvas.Customized.InfoScreenUnit;
 import Client.Scene.Canvas.Standardized.QuadChoiceUnit;
+import Client.Scene.Canvas.Standardized.TripleChoiceUnit;
 import Client.Scene.Canvas.Standardized.WaiterUnit;
 import Client.Scene.JavaFX.Customized.CustomAnswerScreen;
 import Client.Scene.JavaFX.Standardized.StandardCanvasView;
 import Client.Scene.JavaFX.Standardized.StandardVideoView;
-import Client.Scene.Music.MusicHandler;
 import Shared.CommunicationLibrary;
 import Shared.MethodJumper;
 import javafx.stage.Stage;
@@ -19,10 +20,8 @@ import org.reflections.scanners.MethodAnnotationsScanner;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
 
-public class FirstQuestionController implements SubCaller{
+public class FirstQuestionController implements SubCaller {
 
     private Reflections reflections;
     private Stage stage;
@@ -64,11 +63,10 @@ public class FirstQuestionController implements SubCaller{
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_BOOT_POLE)
     private void FirstQuestionReceivePole(String instruction){
         //region Settings
-        StandardCanvasView canvas = new StandardCanvasView(stage, new QuadChoiceUnit(QuestionTwo.returnContents(), StandartMapper.scoreReader(instruction)),controller);
-        StandardVideoView questionVid = new StandardVideoView(stage, "media/2nd Question/Building_Rocket.mp4", canvas);
+        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(QuestionOne.returnContents(), StandartMapper.scoreReader(instruction)),controller);
         InfoScreenUnit unit = new InfoScreenUnit("Your answer was wrong", "The answer should have been the equator, " +
                 "\n because it's is more efficient to launch from there.\n\nYou have now wasted a total of 40.000.000 dollar.", "/images/1st Question/Abandond.jpg");
-        CustomAnswerScreen answerScreen = new CustomAnswerScreen(stage, unit, questionVid);
+        CustomAnswerScreen answerScreen = new CustomAnswerScreen(stage, unit, canvas);
         unit.setCallBack(answerScreen);
 
 
@@ -95,11 +93,10 @@ public class FirstQuestionController implements SubCaller{
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_BOOT_FIRST_PARALLEL)
     private void FirstQuestionReceiveFirst(String instruction){
         //region Settings
-        StandardCanvasView canvas = new StandardCanvasView(stage, new QuadChoiceUnit(QuestionTwo.returnContents(), StandartMapper.scoreReader(instruction)),controller);
-        StandardVideoView questionVid = new StandardVideoView(stage, "media/2nd Question/Building_Rocket.mp4", canvas);
+        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(QuestionOne.returnContents(), StandartMapper.scoreReader(instruction)),controller);
         InfoScreenUnit unit = new InfoScreenUnit("Your answer was wrong", "The answer should have been the equator, " +
                 "\n because it's is more efficient to launch from there.\n\nYou have now wasted a total of 40.000.000 dollar.", "/images/1st Question/Abandond.jpg");
-        CustomAnswerScreen answerScreen = new CustomAnswerScreen(stage, unit, questionVid);
+        CustomAnswerScreen answerScreen = new CustomAnswerScreen(stage, unit, canvas);
         unit.setCallBack(answerScreen);
 
         answerScreen.switchToView();

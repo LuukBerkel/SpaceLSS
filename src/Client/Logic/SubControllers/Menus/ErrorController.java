@@ -1,4 +1,4 @@
-package Client.Logic.SubControllers;
+package Client.Logic.SubControllers.Menus;
 
 import Client.Coms.ComHolder;
 import Client.Logic.GameController;

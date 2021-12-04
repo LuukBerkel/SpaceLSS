@@ -1,15 +1,15 @@
-package Client.Logic.SubControllers;
+package Client.Logic.SubControllers.Questions;
 
 import Client.Logic.GameController;
 import Client.Logic.SceneGetter.QuestionThree;
 import Client.Logic.SceneGetter.QuestionTwo;
 import Client.Logic.SceneGetter.StandartMapper;
+import Client.Logic.SubControllers.Menus.SubCaller;
 import Client.Scene.Canvas.Standardized.QuadChoiceUnit;
 import Client.Scene.Canvas.Standardized.TripleChoiceUnit;
 import Client.Scene.Canvas.Standardized.WaiterUnit;
 import Client.Scene.JavaFX.Standardized.StandardCanvasView;
 import Client.Scene.JavaFX.Standardized.StandardVideoView;
-import Client.Scene.Music.MusicHandler;
 import Shared.CommunicationLibrary;
 import Shared.MethodJumper;
 import javafx.stage.Stage;
@@ -18,10 +18,8 @@ import org.reflections.scanners.MethodAnnotationsScanner;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
 
-public class SecondQuestionController implements SubCaller{
+public class SecondQuestionController implements SubCaller {
 
     private Reflections reflections;
     private Stage stage;
@@ -72,9 +70,8 @@ public class SecondQuestionController implements SubCaller{
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_BOOT_FALCON)
     private void SecondQuestionReceiveFirst(String instruction){
         //region Settings
-        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(QuestionThree.returnContents(), StandartMapper.scoreReader(instruction)),controller);
-        StandardVideoView questionVid = new StandardVideoView(stage, "media/3rd Question/introVid.mp4", canvas);
-        StandardVideoView answerScreen = new StandardVideoView(stage, "media/2nd Question/FalconResult.mp4", questionVid);
+        StandardCanvasView canvas = new StandardCanvasView(stage, new QuadChoiceUnit(QuestionTwo.returnContents(), StandartMapper.scoreReader(instruction)),controller);
+        StandardVideoView answerScreen = new StandardVideoView(stage, "media/2nd Question/FalconResult.mp4", canvas);
 
 
         answerScreen.switchToView();
@@ -96,9 +93,8 @@ public class SecondQuestionController implements SubCaller{
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_BOOT_CHUNK)
     private void SecondQuestionReceiveThirth(String instruction){
         //region Settings
-        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(QuestionThree.returnContents(), StandartMapper.scoreReader(instruction)),controller);
-        StandardVideoView questionVid = new StandardVideoView(stage, "media/3rd Question/introVid.mp4", canvas);
-        StandardVideoView answerScreen = new StandardVideoView(stage, "media/2nd Question/ChunkResult.mp4", questionVid);
+        StandardCanvasView canvas = new StandardCanvasView(stage, new QuadChoiceUnit(QuestionTwo.returnContents(), StandartMapper.scoreReader(instruction)),controller);
+        StandardVideoView answerScreen = new StandardVideoView(stage, "media/2nd Question/ChunkResult.mp4", canvas);
 
 
         answerScreen.switchToView();
@@ -108,9 +104,8 @@ public class SecondQuestionController implements SubCaller{
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_BOOT_TINY)
     private void SecondQuestionReceiveFourth(String instruction){
         //region Settings
-        StandardCanvasView canvas = new StandardCanvasView(stage, new TripleChoiceUnit(QuestionThree.returnContents(), StandartMapper.scoreReader(instruction)),controller);
-        StandardVideoView questionVid = new StandardVideoView(stage, "media/3rd Question/introVid.mp4", canvas);
-        StandardVideoView answerScreen = new StandardVideoView(stage, "media/2nd Question/TinyResult.mp4",questionVid);
+        StandardCanvasView canvas = new StandardCanvasView(stage, new QuadChoiceUnit(QuestionTwo.returnContents(), StandartMapper.scoreReader(instruction)),controller);
+        StandardVideoView answerScreen = new StandardVideoView(stage, "media/2nd Question/TinyResult.mp4", canvas);
 
 
         answerScreen.switchToView();

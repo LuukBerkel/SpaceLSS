@@ -1,32 +1,21 @@
 package Client.Logic;
 
 import Client.Coms.ComHolder;
-import Client.Logic.SubControllers.*;
-import Client.Scene.Canvas.Customized.InfoScreenUnit;
-import Client.Scene.Canvas.Standardized.QuadChoiceUnit;
-import Client.Scene.Canvas.Standardized.TripleChoiceUnit;
-import Client.Scene.Canvas.Standardized.WaiterUnit;
-import Client.Scene.JavaFX.Customized.CustomAnswerScreen;
-import Client.Scene.JavaFX.Customized.CustomErrorMenuView;
+import Client.Logic.SubControllers.Menus.ErrorController;
+import Client.Logic.SubControllers.Menus.MainMenuController;
+import Client.Logic.SubControllers.Menus.SubCaller;
+import Client.Logic.SubControllers.Questions.*;
 import Client.Scene.JavaFX.Customized.CustomMainMenuView;
 import Client.Scene.JavaFX.Customized.CustomSpashScreenView;
-import Client.Scene.JavaFX.Standardized.StandardCanvasView;
-import Client.Scene.JavaFX.Standardized.StandardVideoView;
-import Client.Scene.Music.MusicHandler;
+import Server.Coms.ConnectionHandler;
 import Shared.CommunicationLibrary;
-import Shared.MethodJumper;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import org.reflections.Reflections;
-import org.reflections.scanners.MethodAnnotationsScanner;
 
 import java.awt.*;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class GameController {
 
@@ -51,11 +40,17 @@ public class GameController {
         subControllers.add(new FirstQuestionController(stage, this));
         subControllers.add(new SecondQuestionController(stage, this));
         subControllers.add(new MainMenuController(stage, this));
+        subControllers.add(new ThirdQuestionController(stage, this));
+        subControllers.add(new FourthQuestionController(stage, this));
+        subControllers.add(new FifthQuestionController(stage, this));
+        subControllers.add(new SixthQuestionController(stage, this));
     }
 
     public void startupRoutine() {
         CustomMainMenuView customMainMenuScene = new CustomMainMenuView(stage, this);
         CustomSpashScreenView standardCanvasScene = new CustomSpashScreenView(stage, customMainMenuScene);
+
+
 
         //Setup Scene
         this.stage.setFullScreen(true);

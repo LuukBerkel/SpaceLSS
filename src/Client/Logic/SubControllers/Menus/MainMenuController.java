@@ -1,4 +1,4 @@
-package Client.Logic.SubControllers;
+package Client.Logic.SubControllers.Menus;
 
 import Client.Logic.GameController;
 import Client.Logic.SceneGetter.QuestionOne;
@@ -16,8 +16,6 @@ import org.reflections.scanners.MethodAnnotationsScanner;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MainMenuController implements SubCaller {
 

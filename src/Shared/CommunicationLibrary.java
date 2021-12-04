@@ -23,8 +23,12 @@ public class CommunicationLibrary {
     public final static String COMMUNICATION_SESSION_BOOT_STEEP = "@Game: Boot steep";
     public final static String COMMUNICATION_SESSION_BOOT_NORMAL = "@Game: Boot normal";
     public final static String COMMUNICATION_SESSION_BOOT_FLAT = "@Game: Boot flat";
-
-
+    public final static String COMMUNICATION_SESSION_BOOT_POLAR = "@Game: Boot polar";
+    public final static String COMMUNICATION_SESSION_BOOT_RETRO = "@Game: Boot retro";
+    public final static String COMMUNICATION_SESSION_BOOT_ANGULAR = "@Request: boot angular";
+    public final static String COMMUNICATION_SESSION_BOOT_STANDARD = "@Request:boot standart";
+    public final static String COMMUNICATION_SESSION_BOOT_LANDING_STEEP = "@Request: bot fdsteep";
+    public final static String COMMUNICATION_SESSION_BOOT_LANDING_FLAT = "@Request: boosdfsdftflat";
 
     public final static String COMMUNICATION_SESSION_REQUEST_USA = "@Request: USA";
     public final static String COMMUNICATION_SESSION_REQUEST_USSR = "@Request: USSR";
@@ -36,8 +40,14 @@ public class CommunicationLibrary {
     public final static String COMMUNICATION_SESSION_REQUEST_CHUNK = "@Request: chunk";
     public final static String COMMUNICATION_SESSION_REQUEST_TINY = "@Request: TINY";
     public final static String COMMUNICATION_SESSION_REQUEST_STEEP = "@Request: Steep";
-    public final static String COMMUNICATION_SESSION_REQUEST_NORMAL = "@Request: normal";
-    public final static String COMMUNICATION_SESSION_REQUEST_FLAT = "@Request: flat";
+    public final static String COMMUNICATION_SESSION_REQUEST_NORMAL = "@Request:fsddfssdf normal";
+    public final static String COMMUNICATION_SESSION_REQUEST_FLAT = "@Request: polar";
+    public final static String COMMUNICATION_SESSION_REQUEST_POLAR = "@Request: gdgfddgnormal";
+    public final static String COMMUNICATION_SESSION_REQUEST_RETRO = "@Request: sdfsdfretro";
+    public final static String COMMUNICATION_SESSION_REQUEST_ANGULAR = "@Request: angular";
+    public final static String COMMUNICATION_SESSION_REQUEST_STANDARD = "@Request:standart";
+    public final static String COMMUNICATION_SESSION_REQUEST_LANDING_STEEP = "@Request: steep";
+    public final static String COMMUNICATION_SESSION_REQUEST_LANDING_FLAT = "@Request:flat";
 
 
     //endregion
