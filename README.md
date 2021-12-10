@@ -1,5 +1,5 @@
 # SpaceLSS
-Dit project is gemaakt voor Luchscouts Seppe om te onderwijzen over ruimte vaart(Link: 	[Luchtscouts Seppe](https://www.luchtscouts.nl)). Het doel van dit spel is dat twee teams tegen elkaar strijden wie als eerste in de ruimte is zonder kosten. Dit spel is een haast gemaakt dus voel je vrij om het te verbeteren. 
+Dit project is gemaakt voor Luchscouts Seppe om te onderwijzen over ruimte vaart(Link: 	[Luchtscouts Seppe](https://www.luchtscouts.nl)). Het doel van dit spel is dat twee teams tegen elkaar strijden wie als eerste in de ruimte is zonder kosten. Dit spel is in haast gemaakt dus voel je vrij om het te verbeteren. 
 
 ## Download media.
 De media die bij dit spel in de resouces hoort staat niet op github omdat ze hier te groot voor zijn. De media is te downloaden van onedrive.
