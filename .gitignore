@@ -21,3 +21,105 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+resources/media/Mainmenu/MAINMENU_BACKGROUND_VID.mp4
+
+out/production/SpaceLSS/backgroundvid.mov
+
+out/production/SpaceLSS/backgroundvid.mp4
+
+out/production/SpaceLSS/media/backgroundvid.mp4
+
+resources/media/Introduction/USA_INTRO_VID.mp4
+
+resources/media/Introduction/USSR_INTRO_VID.mp4
+
+out/production/SpaceLSS/media/Spaceport.mp4
+
+out/production/SpaceLSS/media/USA Vid intro.mp4
+
+out/production/SpaceLSS/media/USAVidintro.mp4
+
+out/production/SpaceLSS/media/USSRVidintro.mp4
+
+resources/media/1st Question/FIRST_QUESTION_VID.mp4
+
+out/production/SpaceLSS/media/1st Question/FIRST_QUESTION_VID.mp4
+
+out/production/SpaceLSS/media/Introduction/USA_INTRO_VID.mp4
+
+out/production/SpaceLSS/media/Introduction/USSR_INTRO_VID.mp4
+
+out/production/SpaceLSS/media/Mainmenu/MAINMENU_BACKGROUND_VID.mp4
+
+out/production/SpaceLSS/media/2nd Question/Building_Rocket.mp4
+
+resources/media/2nd Question/Building_Rocket.mp4
+
+out/production/SpaceLSS/media/2nd Question/AtlasResult.mp4
+
+out/production/SpaceLSS/media/2nd Question/ChunkResult.mp4
+
+out/production/SpaceLSS/media/2nd Question/FalconResult.mp4
+
+out/production/SpaceLSS/media/2nd Question/TinyResult.mp4
+
+out/production/SpaceLSS/media/3rd Question/introVid.mp4
+
+resources/media/2nd Question/AtlasResult.mp4
+
+resources/media/3rd Question/SteepVid.mp4
+
+resources/media/3rd Question/StandartVid.mp4
+
+resources/media/2nd Question/TinyResult.mp4
+
+resources/media/3rd Question/introVid.mp4
+
+resources/media/2nd Question/FalconResult.mp4
+
+resources/media/2nd Question/ChunkResult.mp4
+
+out/production/SpaceLSS/media/3rd Question/StandartVid.mp4
+
+out/production/SpaceLSS/media/3rd Question/FladVid.mp4
+
+out/production/SpaceLSS/media/3rd Question/SteepVid.mp4
+
+resources/media/3rd Question/FladVid.mp4
+
+resources/media/4th Question/Correct.mp4
+
+resources/media/4th Question/IntroVid.mp4
+
+resources/media/4th Question/Wrong.mp4
+
+resources/media/5th Question/Correct.mp4
+
+resources/media/5th Question/Failed.mp4
+
+resources/media/5th Question/IntroVid.mp4
+
+resources/media/6th Question/Correct.mp4
+
+resources/media/6th Question/Failed.mp4
+
+resources/media/6th Question/IntroVid.mp4
+
+out/production/SpaceLSS/media/6th Question/IntroVid.mp4
+
+out/production/SpaceLSS/media/5th Question/Correct.mp4
+
+out/production/SpaceLSS/media/4th Question/IntroVid.mp4
+
+out/production/SpaceLSS/media/4th Question/Correct.mp4
+
+out/production/SpaceLSS/media/5th Question/IntroVid.mp4
+
+out/production/SpaceLSS/media/4th Question/Wrong.mp4
+
+out/production/SpaceLSS/media/5th Question/Failed.mp4
+
+out/production/SpaceLSS/media/6th Question/Correct.mp4
+
+out/production/SpaceLSS/media/6th Question/Failed.mp4
