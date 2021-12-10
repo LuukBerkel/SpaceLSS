@@ -3,7 +3,7 @@ Dit project is gemaakt voor Luchscouts Seppe om te onderwijzen over ruimte vaart
 
 ## Download media.
 De media die bij dit spel in de resouces hoort staat niet op github omdat ze hier te groot voor zijn. De media is te downloaden van onedrive.
-Link: 	[SpaceLSS Media](...)
+Link: 	[SpaceLSS Media](https://1drv.ms/u/s!AowJLkrWqQFRasNknAMkdkJdGB0?e=tageKJ)
 
 ## Credits media.
 De media die in de aparte download zit is gebruikt is voor eductieve doeleinde gebruikt.
