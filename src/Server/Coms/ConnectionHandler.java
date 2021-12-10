@@ -165,39 +165,39 @@ public class ConnectionHandler
     public void answerRetro(String message){
         session.updateScores(this,1, 0,0);
         session.AwaiterSession(this);
-        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_NORMAL + session.getScores());
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_RETRO + session.getScores());
     }
 
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_POLAR)
     public void answerPolar(String message){
         session.updateScores(this,0, 3,8000000);
-        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_STEEP + session.getScores());
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_POLAR + session.getScores());
     }
 
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_STANDARD)
     public void answerAngular(String message){
         session.updateScores(this,1, 0,0);
         session.AwaiterSession(this);
-        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_NORMAL + session.getScores());
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_STANDARD + session.getScores());
     }
 
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_ANGULAR)
     public void answerStandard(String message){
         session.updateScores(this,0, 3,8000000);
-        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_STEEP + session.getScores());
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_ANGULAR + session.getScores());
     }
 
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_LANDING_FLAT)
     public void answerLandingFlat(String message){
         session.updateScores(this,1, 0,0);
         session.AwaiterSession(this);
-        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_NORMAL + session.getScores());
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_LANDING_FLAT + session.getScores());
     }
 
     @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_LANDING_STEEP)
     public void answerLandingSteep(String message){
         session.updateScores(this,0, 3,8000000);
-        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_STEEP + session.getScores());
+        connectionSendBack(CommunicationLibrary.COMMUNICATION_SESSION_BOOT_LANDING_STEEP + session.getScores());
     }
 
 
