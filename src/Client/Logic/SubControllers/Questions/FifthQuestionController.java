@@ -52,7 +52,7 @@ public class FifthQuestionController implements SubCaller {
 
 
 
-    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_BOOT_ANGULAR)
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_BOOT_STANDARD)
     private void SecondQuestionReceiveFirst(String instruction){
         //region Settings
         StandardCanvasView canvas = new StandardCanvasView(stage, new DualChoiceUnit(QuestionSix.returnContents(), StandartMapper.scoreReader(instruction)),controller);
@@ -64,7 +64,7 @@ public class FifthQuestionController implements SubCaller {
         //endregion
     }
 
-    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_BOOT_STANDARD)
+    @MethodJumper(command = CommunicationLibrary.COMMUNICATION_SESSION_BOOT_ANGULAR)
     private void SecondQuestionReceiveSecond(String instruction){
         //region Settings
         StandardCanvasView canvas = new StandardCanvasView(stage, new DualChoiceUnit(QuestionFive.returnContents(), StandartMapper.scoreReader(instruction)),controller);
