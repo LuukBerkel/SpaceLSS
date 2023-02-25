@@ -16,6 +16,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class ComHolder {
+    //private static final String SERVER_IP_ADDRESS = "145.49.53.";
     private static final String SERVER_IP_ADDRESS = "192.168.1.";
     private static final  int SERVER_PORT = 8000;
 

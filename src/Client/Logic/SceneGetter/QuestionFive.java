@@ -9,7 +9,7 @@ public class QuestionFive {
         ArrayList<String> assets = new ArrayList<>();
         assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_ANGULAR);
         assets.add("/images/5th Questoin/false.png");
-        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_POLAR);
+        assets.add(CommunicationLibrary.COMMUNICATION_SESSION_REQUEST_STANDARD);
         assets.add("/images/5th Questoin/good.png");
 
         assets.add("/images/5th Questoin/moon.png");
